@@ -11,8 +11,6 @@
       
       
       
-        <link rel="prev" href="../1.2-Core-Principles-of-Microservices/">
-      
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Designing Microservices - Microservices Bootcamp</title>
+        <title>Event message - Microservices Bootcamp</title>
       
     
     
@@ -72,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-a-bounded-context" class="md-skip">
+        <a href="#what-is-an-event" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Designing Microservices
+              Event message
             
           </span>
         </div>
@@ -239,12 +237,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../1.1-Introduction/" class="md-tabs__link">
           
   
@@ -320,10 +316,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -337,22 +331,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -365,7 +356,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Part 1 – Foundations
@@ -422,30 +413,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Designing Microservices
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../1.3-Designing-Microservices/" class="md-nav__link">
         
   
   
@@ -456,159 +427,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-a-bounded-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ What is a Bounded Context?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="✅ What is a Bounded Context?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔍 Example:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-it-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Why it matters?
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-domain-driven-design-ddd" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ What is Domain-Driven Design (DDD)?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="✅ What is Domain-Driven Design (DDD)?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔍 Definition:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#key-ideas" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧱 Key Ideas:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-use-ddd" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Why use DDD?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-short" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 In short:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-service-granularity-in-microservices" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ What is Service Granularity in Microservices?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="✅ What is Service Granularity in Microservices?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#simple-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔍 Simple Definition:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#two-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧱 Two Types:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-decide-the-granularity" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 How to decide the granularity?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rule-of-thumb" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧠 Rule of Thumb:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -637,111 +455,75 @@
 
 
 
-  <h1>Designing Microservices</h1>
+  <h1>Event message</h1>
 
-<h2 id="what-is-a-bounded-context">✅ <strong>What is a Bounded Context?</strong></h2>
-<p>A <strong>Bounded Context</strong> is a <strong>clear boundary</strong> within your system where a <strong>specific meaning of data and terms</strong> is valid.</p>
-<p>Think of it like this:</p>
+<p>Great question! Here's a <strong>simple explanation</strong> suitable for a class on <strong>Event-Driven Architecture (EDA)</strong>:</p>
+<hr />
+<h2 id="what-is-an-event">✅ What is an <strong>Event</strong>?</h2>
+<p>An <strong>event</strong> is a <strong>fact</strong> or <strong>thing that has happened</strong> in a system.</p>
 <blockquote>
-<p>The same word can mean different things in different departments — and that’s okay, as long as each department (context) is kept separate.</p>
+<p>It's a record of <strong>something that occurred</strong> in the past.</p>
 </blockquote>
-<hr />
-<h3 id="example">🔍 Example:</h3>
+<h3 id="example">🔹 Example:</h3>
 <ul>
-<li>
-<p>In an <strong>eCommerce system</strong>:</p>
-</li>
-<li>
-<p>In the <strong>Order context</strong>, “Customer” means someone who places an order.</p>
-</li>
-<li>In the <strong>Support context</strong>, “Customer” means someone who raised a ticket.</li>
+<li>"OrderPlaced"</li>
+<li>"UserRegistered"</li>
+<li>"PaymentFailed"</li>
 </ul>
-<p>They both use the word <strong>Customer</strong>, but their <strong>behavior and data</strong> are different.</p>
+<p>These are <strong>immutable</strong>, meaning once they happen, they don’t change.</p>
 <hr />
-<h3 id="why-it-matters">🧠 Why it matters?</h3>
-<ul>
-<li>Helps teams avoid confusion and conflicts.</li>
-<li>Each context can evolve independently.</li>
-<li>It's a key concept in <strong>Domain-Driven Design (DDD)</strong> and <strong>microservices</strong>.</li>
-</ul>
-<hr />
-<h2 id="what-is-domain-driven-design-ddd">✅ What is Domain-Driven Design (DDD)?</h2>
-<p><strong>Domain-Driven Design (DDD)</strong> is a way of building software that focuses on the <strong>real-world problem (domain)</strong> your software is trying to solve — and involves <strong>close collaboration with domain experts</strong>.</p>
-<hr />
-<h3 id="definition">🔍 Definition:</h3>
+<h2 id="what-is-a-message">✅ What is a <strong>Message</strong>?</h2>
+<p>A <strong>message</strong> is a <strong>piece of data sent from one service to another</strong> to communicate something — and it may <strong>contain an event</strong>.</p>
 <blockquote>
-<p>DDD is about <strong>designing your software based on the business</strong>, not just the technology.</p>
+<p>Messages are how services <strong>talk to each other</strong> — either by <strong>sending commands</strong> or <strong>publishing events</strong>.</p>
 </blockquote>
-<hr />
-<h3 id="key-ideas">🧱 Key Ideas:</h3>
-<ol>
-<li><strong>Domain</strong> – The area your software is solving (e.g., banking, e-commerce, healthcare).</li>
-<li><strong>Entities</strong> – Things that have an identity (like <code>Customer</code>, <code>Order</code>).</li>
-<li><strong>Value Objects</strong> – Objects that don’t have identity, only value (like <code>Address</code>, <code>Money</code>).</li>
-<li><strong>Aggregates</strong> – A group of objects treated as one unit (like <code>Order</code> with <code>OrderItems</code>).</li>
-<li><strong>Repositories</strong> – Interfaces to fetch and store aggregates.</li>
-<li><strong>Services</strong> – Business logic that doesn't naturally fit in an entity/value object.</li>
-<li><strong>Bounded Context</strong> – A clearly defined boundary within the system where terms and models have specific meaning.</li>
-<li><strong>Ubiquitous Language</strong> – A shared language between developers and business users that everyone understands.</li>
-</ol>
-<hr />
-<h3 id="why-use-ddd">🎯 Why use DDD?</h3>
+<h3 id="types-of-messages">🔹 Types of Messages:</h3>
 <ul>
-<li>Makes software <strong>closer to business reality</strong>.</li>
-<li>Reduces miscommunication between devs and domain experts.</li>
-<li>Encourages <strong>clean architecture</strong> and <strong>better code organization</strong>.</li>
+<li><strong>Event message</strong> – “An order was placed.”</li>
+<li><strong>Command message</strong> – “Create an invoice.”</li>
+<li><strong>Query message</strong> – “Get order status.”</li>
 </ul>
 <hr />
-<h3 id="in-short">🧠 In short:</h3>
-<blockquote>
-<p>DDD helps you build <strong>software that speaks the business language</strong>, and keeps the complexity where it belongs — <strong>in the business rules</strong>, not in the plumbing.</p>
-</blockquote>
+<h2 id="event-vs-message-side-by-side">🔄 Event vs Message (Side by Side)</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Event</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it is</td>
+<td>A record of something that happened</td>
+<td>A communication between services</td>
+</tr>
+<tr>
+<td>Direction</td>
+<td>Usually one-way (publish)</td>
+<td>One-way or request-response</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>"OrderPlaced"</td>
+<td>"CreateInvoiceCommand"</td>
+</tr>
+<tr>
+<td>Nature</td>
+<td>Passive (just notifies)</td>
+<td>Active (asks for something)</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="what-is-service-granularity-in-microservices">✅ What is <strong>Service Granularity</strong> in Microservices?</h2>
-<p><strong>Service Granularity</strong> refers to <strong>how big or small</strong> a microservice should be — in terms of <strong>scope, responsibilities, and size</strong>.</p>
-<hr />
-<h3 id="simple-definition">🔍 Simple Definition:</h3>
-<blockquote>
-<p>It's about finding the <strong>right size</strong> for a microservice — not too big (like a monolith) and not too small (like nano-services).</p>
-</blockquote>
-<hr />
-<h3 id="two-types">🧱 Two Types:</h3>
-<ol>
-<li>
-<p><strong>Coarse-Grained Service</strong></p>
-</li>
-<li>
-<p>Has <strong>more responsibilities</strong>.</p>
-</li>
-<li>Covers <strong>broader business functionality</strong>.</li>
-<li>Fewer services to manage, but <strong>less flexibility</strong>.</li>
-<li>
-<p>Example: A single <code>OrderService</code> handles creation, tracking, and billing.</p>
-</li>
-<li>
-<p><strong>Fine-Grained Service</strong></p>
-</li>
-<li>
-<p>Has <strong>very specific responsibility</strong>.</p>
-</li>
-<li>More services, each doing <strong>only one thing</strong>.</li>
-<li>Greater flexibility and scalability, but <strong>more complexity</strong> in communication.</li>
-<li>Example: Separate services like <code>OrderCreationService</code>, <code>OrderTrackingService</code>, <code>BillingService</code>.</li>
-</ol>
-<hr />
-<h3 id="how-to-decide-the-granularity">🎯 How to decide the granularity?</h3>
-<p>Ask:</p>
+<h2 id="summary">🧠 Summary:</h2>
 <ul>
-<li>Does the service handle <strong>one clear business function</strong>?</li>
-<li>Can it be <strong>owned, deployed, and scaled independently</strong>?</li>
-<li>Will splitting or combining services help <strong>reduce communication overhead</strong>?</li>
-<li>Do services often change together? If yes, consider merging.</li>
+<li>An <strong>event</strong> says: “Something happened.”</li>
+<li>A <strong>message</strong> says: “Here’s some info for you.”</li>
 </ul>
-<hr />
-<h3 id="rule-of-thumb">🧠 Rule of Thumb:</h3>
-<blockquote>
-<p><strong>A service should do one thing well</strong>, and should <strong>not be so small that it causes excessive inter-service communication</strong>.</p>
-</blockquote>
+<p>In <strong>event-driven systems</strong>, services <strong>emit events</strong> and <strong>consume events</strong> using messages.</p>
+<p>Let me know if you want to include <strong>Kafka, RabbitMQ, or Azure Service Bus</strong> in your examples.</p>
 
 
 
@@ -772,28 +554,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../1.2-Core-Principles-of-Microservices/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Core Principles of Microservices">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Core Principles of Microservices
-              </div>
-            </div>
-          </a>
-        
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

@@ -11,8 +11,10 @@
       
       
       
-        <link rel="prev" href="../1.2-Core-Principles-of-Microservices/">
+        <link rel="prev" href="../1.1-Introduction/">
       
+      
+        <link rel="next" href="../1.3-Designing-Microservices/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +22,7 @@
     
     
       
-        <title>Designing Microservices - Microservices Bootcamp</title>
+        <title>Core Principles of Microservices - Microservices Bootcamp</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-a-bounded-context" class="md-skip">
+        <a href="#12-core-principles-of-microservices" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Designing Microservices
+              Core Principles of Microservices
             
           </span>
         </div>
@@ -399,29 +401,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../1.2-Core-Principles-of-Microservices/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Core Principles of Microservices
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -431,13 +410,15 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   
   <span class="md-ellipsis">
-    Designing Microservices
+    Core Principles of Microservices
     
   </span>
   
@@ -450,7 +431,7 @@
   
   
   <span class="md-ellipsis">
-    Designing Microservices
+    Core Principles of Microservices
     
   </span>
   
@@ -463,6 +444,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -471,19 +454,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-a-bounded-context" class="md-nav__link">
+  <a href="#solid-principles" class="md-nav__link">
     <span class="md-ellipsis">
-      ✅ What is a Bounded Context?
+      🧱 SOLID Principles
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="✅ What is a Bounded Context?">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-common-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Other Common Design Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Other Common Design Principles">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-are-these-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Why are these important?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decentralization-in-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 Decentralization in Microservices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 Decentralization in Microservices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ What it means:
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      🔍 Example:
+      📦 Example:
     </span>
   </a>
   
@@ -492,7 +517,7 @@
           <li class="md-nav__item">
   <a href="#why-it-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      🧠 Why it matters?
+      🎯 Why it matters:
     </span>
   </a>
   
@@ -504,46 +529,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-domain-driven-design-ddd" class="md-nav__link">
+  <a href="#scalability-and-autonomy-in-microservices-simple-explanation" class="md-nav__link">
     <span class="md-ellipsis">
-      ✅ What is Domain-Driven Design (DDD)?
+      📈 Scalability and Autonomy in Microservices (Simple Explanation)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="✅ What is Domain-Driven Design (DDD)?">
+    <nav class="md-nav" aria-label="📈 Scalability and Autonomy in Microservices (Simple Explanation)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
+  <a href="#scalability-in-microservices" class="md-nav__link">
     <span class="md-ellipsis">
-      🔍 Definition:
+      🚀 Scalability in Microservices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Scalability in Microservices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ In Microservices:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-ideas" class="md-nav__link">
+  <a href="#types-of-scalability" class="md-nav__link">
     <span class="md-ellipsis">
-      🧱 Key Ideas:
+      🔧 Types of Scalability:
     </span>
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
-  <a href="#why-use-ddd" class="md-nav__link">
+  <a href="#autonomy-in-microservices" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 Why use DDD?
+      🧠 Autonomy in Microservices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Autonomy in Microservices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-microservices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ In Microservices:
     </span>
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
-  <a href="#in-short" class="md-nav__link">
+  <a href="#benefits" class="md-nav__link">
     <span class="md-ellipsis">
-      🧠 In short:
+      🎯 Benefits:
     </span>
   </a>
   
@@ -555,46 +610,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-is-service-granularity-in-microservices" class="md-nav__link">
+  <a href="#api-contracts-in-microservices-simple-words" class="md-nav__link">
     <span class="md-ellipsis">
-      ✅ What is Service Granularity in Microservices?
+      📄 API Contracts in Microservices (Simple Words)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="✅ What is Service Granularity in Microservices?">
+    <nav class="md-nav" aria-label="📄 API Contracts in Microservices (Simple Words)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#simple-definition" class="md-nav__link">
+  <a href="#what-is-an-api-contract" class="md-nav__link">
     <span class="md-ellipsis">
-      🔍 Simple Definition:
+      🧾 What is an API Contract?
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#two-types" class="md-nav__link">
+  <a href="#why-api-contracts-are-important" class="md-nav__link">
     <span class="md-ellipsis">
-      🧱 Two Types:
+      🤝 Why API Contracts Are Important
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#how-to-decide-the-granularity" class="md-nav__link">
+  <a href="#example-simple-rest-contract" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 How to decide the granularity?
+      📦 Example (Simple REST Contract)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rule-of-thumb" class="md-nav__link">
+  <a href="#tools-for-api-contracts" class="md-nav__link">
     <span class="md-ellipsis">
-      🧠 Rule of Thumb:
+      🛠 Tools for API Contracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Benefits
     </span>
   </a>
   
@@ -609,6 +673,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.3-Designing-Microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Designing Microservices
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -637,111 +724,209 @@
 
 
 
-  <h1>Designing Microservices</h1>
-
-<h2 id="what-is-a-bounded-context">✅ <strong>What is a Bounded Context?</strong></h2>
-<p>A <strong>Bounded Context</strong> is a <strong>clear boundary</strong> within your system where a <strong>specific meaning of data and terms</strong> is valid.</p>
-<p>Think of it like this:</p>
-<blockquote>
-<p>The same word can mean different things in different departments — and that’s okay, as long as each department (context) is kept separate.</p>
-</blockquote>
-<hr />
-<h3 id="example">🔍 Example:</h3>
+<h1 id="12-core-principles-of-microservices">1.2 Core Principles of Microservices</h1>
+<h2 id="solid-principles">🧱 SOLID Principles</h2>
+<p><strong>SOLID</strong> is a set of 5 design principles that help make your software <strong>easy to understand</strong>, <strong>flexible</strong>, and <strong>maintainable</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Name</th>
+<th>Simple Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S</strong></td>
+<td><strong>Single Responsibility Principle (SRP)</strong></td>
+<td>A class should do <strong>only one job</strong>. Don't mix responsibilities.</td>
+</tr>
+<tr>
+<td><strong>O</strong></td>
+<td><strong>Open/Closed Principle (OCP)</strong></td>
+<td>Software should be <strong>open for extension</strong>, but <strong>closed for modification</strong>. Add new code without changing old code.</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td><strong>Liskov Substitution Principle (LSP)</strong></td>
+<td>A subclass should <strong>behave like its parent</strong>. Replacing the parent with a child should not break the app.</td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td><strong>Interface Segregation Principle (ISP)</strong></td>
+<td>Don't force a class to implement <strong>unneeded methods</strong>. Use <strong>small, specific interfaces</strong>.</td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td><strong>Dependency Inversion Principle (DIP)</strong></td>
+<td>Code should depend on <strong>abstractions</strong>, not on concrete implementations. Use interfaces instead of tightly coupled classes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-common-design-principles">✅ Other Common Design Principles</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DRY (Don't Repeat Yourself)</strong></td>
+<td>Don’t copy-paste code. Reuse logic through functions, classes, etc.</td>
+</tr>
+<tr>
+<td><strong>KISS (Keep It Simple, Stupid)</strong></td>
+<td>Keep your code simple and avoid unnecessary complexity.</td>
+</tr>
+<tr>
+<td><strong>YAGNI (You Ain’t Gonna Need It)</strong></td>
+<td>Don’t build something until you actually need it.</td>
+</tr>
+<tr>
+<td><strong>Separation of Concerns (SoC)</strong></td>
+<td>Keep different parts of the system separate. UI, logic, and data should be in different layers.</td>
+</tr>
+<tr>
+<td><strong>Composition over Inheritance</strong></td>
+<td>Prefer combining small objects over using large class hierarchies.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="why-are-these-important">🎯 Why are these important?</h3>
+<p>These principles help you:</p>
 <ul>
-<li>
-<p>In an <strong>eCommerce system</strong>:</p>
-</li>
-<li>
-<p>In the <strong>Order context</strong>, “Customer” means someone who places an order.</p>
-</li>
-<li>In the <strong>Support context</strong>, “Customer” means someone who raised a ticket.</li>
+<li>Write <strong>clean</strong>, <strong>testable</strong>, and <strong>maintainable</strong> code.</li>
+<li>Reduce <strong>bugs</strong>, <strong>duplication</strong>, and <strong>tight coupling</strong>.</li>
+<li>Make your app more <strong>flexible to change</strong>.</li>
 </ul>
-<p>They both use the word <strong>Customer</strong>, but their <strong>behavior and data</strong> are different.</p>
-<hr />
-<h3 id="why-it-matters">🧠 Why it matters?</h3>
+<h2 id="decentralization-in-microservices">🧭 Decentralization in Microservices</h2>
+<p><strong>Decentralization</strong> means that <strong>each microservice manages its own logic, data, and decisions</strong>, rather than relying on a central system to control everything.</p>
+<h3 id="what-it-means">✅ What it means:</h3>
 <ul>
-<li>Helps teams avoid confusion and conflicts.</li>
-<li>Each context can evolve independently.</li>
-<li>It's a key concept in <strong>Domain-Driven Design (DDD)</strong> and <strong>microservices</strong>.</li>
+<li><strong>No central brain</strong>: Each service is <strong>independent</strong> and doesn’t wait for a "master service" to tell it what to do.</li>
+<li><strong>Own database</strong>: Each service has <strong>its own database</strong>, instead of sharing one big database.</li>
+<li><strong>Own responsibilities</strong>: Each service <strong>handles its own tasks</strong>, rules, and errors.</li>
 </ul>
-<hr />
-<h2 id="what-is-domain-driven-design-ddd">✅ What is Domain-Driven Design (DDD)?</h2>
-<p><strong>Domain-Driven Design (DDD)</strong> is a way of building software that focuses on the <strong>real-world problem (domain)</strong> your software is trying to solve — and involves <strong>close collaboration with domain experts</strong>.</p>
-<hr />
-<h3 id="definition">🔍 Definition:</h3>
-<blockquote>
-<p>DDD is about <strong>designing your software based on the business</strong>, not just the technology.</p>
-</blockquote>
-<hr />
-<h3 id="key-ideas">🧱 Key Ideas:</h3>
-<ol>
-<li><strong>Domain</strong> – The area your software is solving (e.g., banking, e-commerce, healthcare).</li>
-<li><strong>Entities</strong> – Things that have an identity (like <code>Customer</code>, <code>Order</code>).</li>
-<li><strong>Value Objects</strong> – Objects that don’t have identity, only value (like <code>Address</code>, <code>Money</code>).</li>
-<li><strong>Aggregates</strong> – A group of objects treated as one unit (like <code>Order</code> with <code>OrderItems</code>).</li>
-<li><strong>Repositories</strong> – Interfaces to fetch and store aggregates.</li>
-<li><strong>Services</strong> – Business logic that doesn't naturally fit in an entity/value object.</li>
-<li><strong>Bounded Context</strong> – A clearly defined boundary within the system where terms and models have specific meaning.</li>
-<li><strong>Ubiquitous Language</strong> – A shared language between developers and business users that everyone understands.</li>
-</ol>
-<hr />
-<h3 id="why-use-ddd">🎯 Why use DDD?</h3>
+<h3 id="example">📦 Example:</h3>
 <ul>
-<li>Makes software <strong>closer to business reality</strong>.</li>
-<li>Reduces miscommunication between devs and domain experts.</li>
-<li>Encourages <strong>clean architecture</strong> and <strong>better code organization</strong>.</li>
+<li>In a monolithic app, a central module might handle all payments.</li>
+<li>In microservices, the <strong>payment service</strong> does everything related to payments, including rules, storing data, and processing — <strong>without needing other services</strong> to do it for it.</li>
 </ul>
-<hr />
-<h3 id="in-short">🧠 In short:</h3>
-<blockquote>
-<p>DDD helps you build <strong>software that speaks the business language</strong>, and keeps the complexity where it belongs — <strong>in the business rules</strong>, not in the plumbing.</p>
-</blockquote>
-<hr />
-<h2 id="what-is-service-granularity-in-microservices">✅ What is <strong>Service Granularity</strong> in Microservices?</h2>
-<p><strong>Service Granularity</strong> refers to <strong>how big or small</strong> a microservice should be — in terms of <strong>scope, responsibilities, and size</strong>.</p>
-<hr />
-<h3 id="simple-definition">🔍 Simple Definition:</h3>
-<blockquote>
-<p>It's about finding the <strong>right size</strong> for a microservice — not too big (like a monolith) and not too small (like nano-services).</p>
-</blockquote>
-<hr />
-<h3 id="two-types">🧱 Two Types:</h3>
-<ol>
-<li>
-<p><strong>Coarse-Grained Service</strong></p>
-</li>
-<li>
-<p>Has <strong>more responsibilities</strong>.</p>
-</li>
-<li>Covers <strong>broader business functionality</strong>.</li>
-<li>Fewer services to manage, but <strong>less flexibility</strong>.</li>
-<li>
-<p>Example: A single <code>OrderService</code> handles creation, tracking, and billing.</p>
-</li>
-<li>
-<p><strong>Fine-Grained Service</strong></p>
-</li>
-<li>
-<p>Has <strong>very specific responsibility</strong>.</p>
-</li>
-<li>More services, each doing <strong>only one thing</strong>.</li>
-<li>Greater flexibility and scalability, but <strong>more complexity</strong> in communication.</li>
-<li>Example: Separate services like <code>OrderCreationService</code>, <code>OrderTrackingService</code>, <code>BillingService</code>.</li>
-</ol>
-<hr />
-<h3 id="how-to-decide-the-granularity">🎯 How to decide the granularity?</h3>
-<p>Ask:</p>
+<h3 id="why-it-matters">🎯 Why it matters:</h3>
 <ul>
-<li>Does the service handle <strong>one clear business function</strong>?</li>
-<li>Can it be <strong>owned, deployed, and scaled independently</strong>?</li>
-<li>Will splitting or combining services help <strong>reduce communication overhead</strong>?</li>
-<li>Do services often change together? If yes, consider merging.</li>
+<li>Reduces <strong>tight coupling</strong>.</li>
+<li>Increases <strong>autonomy</strong> and <strong>scalability</strong>.</li>
+<li>Teams can work <strong>independently</strong>.</li>
+<li>Services can be <strong>deployed</strong> or <strong>updated</strong> without affecting others.</li>
+</ul>
+<h2 id="scalability-and-autonomy-in-microservices-simple-explanation">📈 Scalability and Autonomy in Microservices (Simple Explanation)</h2>
+<h3 id="scalability-in-microservices">🚀 Scalability in Microservices</h3>
+<p><strong>Scalability</strong> means the ability of your system to <strong>handle more load</strong> (users, data, traffic) by <strong>adding more resources</strong>.</p>
+<h4 id="in-microservices">✅ In Microservices:</h4>
+<ul>
+<li>You can <strong>scale only the service that needs more resources</strong>, not the whole application.</li>
+<li>Example: If the <strong>"Order Service"</strong> is getting more traffic than others, you can deploy <strong>more instances</strong> of just that service.</li>
+</ul>
+<h4 id="types-of-scalability">🔧 Types of Scalability:</h4>
+<ul>
+<li><strong>Horizontal scaling</strong> – Add more service instances (most common).</li>
+<li><strong>Vertical scaling</strong> – Give more CPU/RAM to existing instances (limited and expensive).</li>
+</ul>
+<h3 id="autonomy-in-microservices">🧠 Autonomy in Microservices</h3>
+<p><strong>Autonomy</strong> means each microservice is <strong>independent</strong> and can <strong>make decisions, run, and be deployed on its own</strong>.</p>
+<h4 id="in-microservices_1">✅ In Microservices:</h4>
+<ul>
+<li>Services have their <strong>own code, data, and logic</strong>.</li>
+<li>Teams can <strong>build, test, and deploy</strong> their services without coordinating with others.</li>
+<li>Example: The <strong>"Payment Service"</strong> doesn’t need the <strong>"User Service"</strong> to function or deploy.</li>
+</ul>
+<h3 id="benefits">🎯 Benefits:</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Efficient use of resources, performance under high load.</td>
+</tr>
+<tr>
+<td><strong>Autonomy</strong></td>
+<td>Faster development, independent deployments, fewer dependencies.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="api-contracts-in-microservices-simple-words">📄 API Contracts in Microservices (Simple Words)</h2>
+<h3 id="what-is-an-api-contract">🧾 What is an API Contract?</h3>
+<p>An <strong>API Contract</strong> is a <strong>written agreement (or definition)</strong> between microservices that defines:</p>
+<ul>
+<li>What endpoints are available (<code>/orders</code>, <code>/users</code>)</li>
+<li>What data to send (request)</li>
+<li>What data to expect back (response)</li>
+<li>What status codes might be returned</li>
+</ul>
+<p>It’s like a <strong>mutual promise</strong> between services:</p>
+<blockquote>
+<p>“If you call me like <strong>this</strong>, I will respond like <strong>that</strong>.”</p>
+</blockquote>
+<hr />
+<h3 id="why-api-contracts-are-important">🤝 Why API Contracts Are Important</h3>
+<p>In Microservices:</p>
+<ul>
+<li>Services are <strong>independent</strong>.</li>
+<li>They <strong>talk via APIs</strong> (e.g., REST, gRPC, messaging).</li>
+<li>You need a <strong>clear contract</strong> to ensure they communicate correctly.</li>
 </ul>
 <hr />
-<h3 id="rule-of-thumb">🧠 Rule of Thumb:</h3>
-<blockquote>
-<p><strong>A service should do one thing well</strong>, and should <strong>not be so small that it causes excessive inter-service communication</strong>.</p>
-</blockquote>
+<h3 id="example-simple-rest-contract">📦 Example (Simple REST Contract)</h3>
+<p><strong>Order Service API Contract:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Request Body</th>
+<th>Response Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/orders</code></td>
+<td><code>{ "productId": 1, "qty": 2 }</code></td>
+<td><code>{ "orderId": 123 }</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/orders/123</code></td>
+<td>—</td>
+<td><code>{ "orderId": 123, "status": "Shipped" }</code></td>
+</tr>
+</tbody>
+</table>
+<p>This tells consumers (like UI or another service) <strong>what to send and what to expect</strong>.</p>
+<hr />
+<h3 id="tools-for-api-contracts">🛠 Tools for API Contracts</h3>
+<ul>
+<li><strong>OpenAPI / Swagger</strong> – For REST APIs</li>
+<li><strong>gRPC Protobufs</strong> – For gRPC APIs</li>
+<li><strong>AsyncAPI</strong> – For message-based communication</li>
+<li><strong>Postman / Stoplight</strong> – For testing and documenting contracts</li>
+<li><strong>Pact</strong> – For contract testing between services</li>
+</ul>
+<hr />
+<h3 id="benefits_1">✅ Benefits</h3>
+<ul>
+<li><strong>Clear communication</strong> between services</li>
+<li><strong>Early validation</strong> of integrations</li>
+<li><strong>Safer changes</strong> (breaking changes are avoided)</li>
+<li><strong>Contract testing</strong> ensures compatibility</li>
+</ul>
 
 
 
@@ -777,7 +962,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../1.2-Core-Principles-of-Microservices/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Core Principles of Microservices">
+          <a href="../1.1-Introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -787,11 +972,27 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Core Principles of Microservices
+                Introduction
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../1.3-Designing-Microservices/" class="md-footer__link md-footer__link--next" aria-label="Next: Designing Microservices">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Designing Microservices
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
