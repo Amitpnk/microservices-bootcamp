@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../1.3-Designing-Microservices/">
+      
+      
+        <link rel="next" href="../1.4-Service-Contracts/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Event message - Microservices Bootcamp</title>
+        <title>Communication Patterns - Microservices Bootcamp</title>
       
     
     
@@ -70,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-an-event" class="md-skip">
+        <a href="#communication-patterns" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Event message
+              Communication Patterns
             
           </span>
         </div>
@@ -237,10 +241,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../1.1-Introduction/" class="md-tabs__link">
           
   
@@ -316,8 +322,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -335,19 +343,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -360,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Part 1 – Foundations
@@ -440,10 +451,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../1.4-Communication-Patterns/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Communication Patterns
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -454,6 +487,185 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#communication-patterns-synchronous-restgrpcgraphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Communication Patterns – Synchronous (REST/gRPC/GraphQL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Communication Patterns – Synchronous (REST/gRPC/GraphQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-synchronous-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚦 What is Synchronous Communication?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-synchronous-communication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Common Synchronous Communication Methods:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Common Synchronous Communication Methods:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rest-representational-state-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 🌐 REST (Representational State Transfer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-grpc-google-remote-procedure-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ⚡ gRPC (Google Remote Procedure Call)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-graphql" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 🔍 GraphQL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-synchronous-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 When to Use Synchronous Communication?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-patterns-asynchronous-message-queues-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔁 Communication Patterns – Asynchronous (Message Queues &amp; Events)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔁 Communication Patterns – Asynchronous (Message Queues &amp; Events)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-asynchronous-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⏳ What is Asynchronous Communication?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-asynchronous-communication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Common Asynchronous Communication Methods:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧰 Common Asynchronous Communication Methods:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-message-queues" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 📬 Message Queues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-events-pubsub" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 📢 Events (Pub/Sub)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-asynchronous-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Benefits of Asynchronous Communication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❗ Challenges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-asynchronous-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 When to Use Asynchronous Communication?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -505,75 +717,160 @@
 
 
 
-  <h1>Event message</h1>
-
-<p>Great question! Here's a <strong>simple explanation</strong> suitable for a class on <strong>Event-Driven Architecture (EDA)</strong>:</p>
+<h1 id="communication-patterns">✅ <strong>Communication Patterns</strong></h1>
+<h2 id="communication-patterns-synchronous-restgrpcgraphql">🔄 Communication Patterns – <strong>Synchronous (REST/gRPC/GraphQL)</strong></h2>
+<h3 id="what-is-synchronous-communication">🚦 What is Synchronous Communication?</h3>
+<p>In <strong>synchronous communication</strong>, the <strong>caller waits</strong> for the <strong>response</strong> before continuing.
+It’s like making a phone call — you ask a question and <strong>wait for the answer</strong>.</p>
 <hr />
-<h2 id="what-is-an-event">✅ What is an <strong>Event</strong>?</h2>
-<p>An <strong>event</strong> is a <strong>fact</strong> or <strong>thing that has happened</strong> in a system.</p>
-<blockquote>
-<p>It's a record of <strong>something that occurred</strong> in the past.</p>
-</blockquote>
-<h3 id="example">🔹 Example:</h3>
+<h2 id="common-synchronous-communication-methods">🔧 Common Synchronous Communication Methods:</h2>
+<h3 id="1-rest-representational-state-transfer">1. 🌐 <strong>REST (Representational State Transfer)</strong></h3>
 <ul>
-<li>"OrderPlaced"</li>
-<li>"UserRegistered"</li>
-<li>"PaymentFailed"</li>
+<li>Uses <strong>HTTP</strong> and <strong>JSON</strong></li>
+<li>Simple and widely used</li>
+<li>Based on <strong>resources</strong> (like <code>/orders</code>, <code>/users</code>)</li>
+<li>Good for: Public APIs, CRUD operations</li>
 </ul>
-<p>These are <strong>immutable</strong>, meaning once they happen, they don’t change.</p>
-<hr />
-<h2 id="what-is-a-message">✅ What is a <strong>Message</strong>?</h2>
-<p>A <strong>message</strong> is a <strong>piece of data sent from one service to another</strong> to communicate something — and it may <strong>contain an event</strong>.</p>
-<blockquote>
-<p>Messages are how services <strong>talk to each other</strong> — either by <strong>sending commands</strong> or <strong>publishing events</strong>.</p>
-</blockquote>
-<h3 id="types-of-messages">🔹 Types of Messages:</h3>
+<p>✅ <strong>Pros</strong>:</p>
 <ul>
-<li><strong>Event message</strong> – “An order was placed.”</li>
-<li><strong>Command message</strong> – “Create an invoice.”</li>
-<li><strong>Query message</strong> – “Get order status.”</li>
+<li>Easy to use</li>
+<li>Readable URLs</li>
+<li>Standard HTTP methods (GET, POST, PUT, DELETE)</li>
+</ul>
+<p>❌ <strong>Cons</strong>:</p>
+<ul>
+<li>Over-fetching or under-fetching of data</li>
+<li>No built-in schema validation</li>
 </ul>
 <hr />
-<h2 id="event-vs-message-side-by-side">🔄 Event vs Message (Side by Side)</h2>
+<h3 id="2-grpc-google-remote-procedure-call">2. ⚡ <strong>gRPC (Google Remote Procedure Call)</strong></h3>
+<ul>
+<li>Uses <strong>HTTP/2</strong> and <strong>Protobuf</strong> (binary format)</li>
+<li>Fast and efficient</li>
+<li>Based on <strong>methods</strong>, not resources</li>
+<li>Good for: Internal microservice-to-microservice communication</li>
+</ul>
+<p>✅ <strong>Pros</strong>:</p>
+<ul>
+<li>Very fast (binary + HTTP/2)</li>
+<li>Strongly typed contracts (Protobuf)</li>
+<li>Bi-directional streaming supported</li>
+</ul>
+<p>❌ <strong>Cons</strong>:</p>
+<ul>
+<li>Harder to debug than REST</li>
+<li>Browser support limited</li>
+</ul>
+<hr />
+<h3 id="3-graphql">3. 🔍 <strong>GraphQL</strong></h3>
+<ul>
+<li>Query language for APIs</li>
+<li>You <strong>ask for exactly the data you need</strong></li>
+<li>One endpoint for everything (<code>/graphql</code>)</li>
+<li>Good for: Complex UIs and mobile apps</li>
+</ul>
+<p>✅ <strong>Pros</strong>:</p>
+<ul>
+<li>No over-fetching or under-fetching</li>
+<li>Flexible queries</li>
+<li>Strong typing (via schema)</li>
+</ul>
+<p>❌ <strong>Cons</strong>:</p>
+<ul>
+<li>More complex to implement</li>
+<li>Performance tuning can be tricky</li>
+</ul>
+<h3 id="when-to-use-synchronous-communication">🧠 When to Use Synchronous Communication?</h3>
+<p>Use when:</p>
+<ul>
+<li><strong>Immediate response</strong> is required (e.g., UI interactions)</li>
+<li><strong>Request → Response</strong> pattern fits well</li>
+<li>Services are <strong>closely connected</strong></li>
+</ul>
+<p>Avoid when:</p>
+<ul>
+<li>High load may cause <strong>latency</strong></li>
+<li>You need <strong>loose coupling or retries</strong> → prefer <strong>asynchronous/event-driven</strong></li>
+</ul>
+<h2 id="communication-patterns-asynchronous-message-queues-events">🔁 Communication Patterns – <strong>Asynchronous (Message Queues &amp; Events)</strong></h2>
+<h3 id="what-is-asynchronous-communication">⏳ What is Asynchronous Communication?</h3>
+<p>In <strong>asynchronous communication</strong>, the sender <strong>does not wait</strong> for a response.
+It’s like <strong>sending a message</strong> or email — the receiver can process it <strong>later</strong>, at their own pace.</p>
+<hr />
+<h2 id="common-asynchronous-communication-methods">🧰 Common Asynchronous Communication Methods:</h2>
+<h3 id="1-message-queues">1. 📬 <strong>Message Queues</strong></h3>
+<ul>
+<li>Services send messages to a <strong>queue</strong></li>
+<li>Other services pick up messages and process them</li>
+<li>Examples: <strong>Azure Service Bus</strong>, <strong>RabbitMQ</strong>, <strong>Amazon SQS</strong></li>
+</ul>
+<p>✅ <strong>Good for</strong>:</p>
+<ul>
+<li>Decoupling services</li>
+<li>Load buffering</li>
+<li>Background processing</li>
+</ul>
+<hr />
+<h3 id="2-events-pubsub">2. 📢 <strong>Events (Pub/Sub)</strong></h3>
+<ul>
+<li>Services <strong>publish events</strong> to a topic or event bus</li>
+<li>Other services <strong>subscribe</strong> and react to those events</li>
+<li>Examples: <strong>Kafka</strong>, <strong>Azure Event Grid</strong>, <strong>AWS SNS/SQS</strong></li>
+</ul>
+<p>✅ <strong>Good for</strong>:</p>
+<ul>
+<li>Event-driven systems</li>
+<li>Broadcasting changes to many services (e.g., "OrderPlaced" triggers shipping, email)</li>
+</ul>
+<hr />
+<h2 id="benefits-of-asynchronous-communication">🎯 Benefits of Asynchronous Communication</h2>
 <table>
 <thead>
 <tr>
-<th>Aspect</th>
-<th>Event</th>
-<th>Message</th>
+<th>Feature</th>
+<th>Benefit</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>What it is</td>
-<td>A record of something that happened</td>
-<td>A communication between services</td>
+<td>🧩 <strong>Loose Coupling</strong></td>
+<td>Services don’t depend on each other’s availability</td>
 </tr>
 <tr>
-<td>Direction</td>
-<td>Usually one-way (publish)</td>
-<td>One-way or request-response</td>
+<td>🕒 <strong>Improved Resilience</strong></td>
+<td>Temporary failures don’t break the flow</td>
 </tr>
 <tr>
-<td>Example</td>
-<td>"OrderPlaced"</td>
-<td>"CreateInvoiceCommand"</td>
+<td>⚖️ <strong>Scalability</strong></td>
+<td>Queues handle high load by buffering requests</td>
 </tr>
 <tr>
-<td>Nature</td>
-<td>Passive (just notifies)</td>
-<td>Active (asks for something)</td>
+<td>⏱️ <strong>Non-blocking</strong></td>
+<td>Fast response for sender (fire-and-forget)</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="summary">🧠 Summary:</h2>
+<h2 id="challenges">❗ Challenges</h2>
 <ul>
-<li>An <strong>event</strong> says: “Something happened.”</li>
-<li>A <strong>message</strong> says: “Here’s some info for you.”</li>
+<li><strong>Eventual consistency</strong>: Responses aren’t immediate</li>
+<li><strong>Harder to debug</strong>: No direct trace like REST calls</li>
+<li><strong>Message duplication or loss</strong>: Requires retry and idempotency logic</li>
+<li><strong>Delivery guarantees</strong>: At-least-once, at-most-once, exactly-once</li>
 </ul>
-<p>In <strong>event-driven systems</strong>, services <strong>emit events</strong> and <strong>consume events</strong> using messages.</p>
-<p>Let me know if you want to include <strong>Kafka, RabbitMQ, or Azure Service Bus</strong> in your examples.</p>
+<hr />
+<h2 id="when-to-use-asynchronous-communication">🧠 When to Use Asynchronous Communication?</h2>
+<p>Use when:</p>
+<ul>
+<li>Tasks can run in the <strong>background</strong></li>
+<li>You need <strong>decoupled services</strong></li>
+<li>Services should <strong>react to events</strong> (e.g., OrderPlaced → SendInvoice)</li>
+</ul>
+<p>Avoid when:</p>
+<ul>
+<li><strong>Immediate feedback</strong> is needed (e.g., form submission UI)</li>
+<li>Too many events make flow hard to track</li>
+</ul>
 
 
 
@@ -604,6 +901,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../1.3-Designing-Microservices/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Designing Microservices">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Designing Microservices
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../1.4-Service-Contracts/" class="md-footer__link md-footer__link--next" aria-label="Next: Service Contracts">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Service Contracts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
