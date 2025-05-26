@@ -245,7 +245,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../README.md" class="md-tabs__link">
+        <a href="../.." class="md-tabs__link">
           
   
   
@@ -328,6 +328,8 @@
     
       
         
+          
+        
       
         
       
@@ -350,8 +352,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -360,8 +363,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
@@ -370,27 +379,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Introduction
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -524,6 +512,51 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#what-is-service-granularity-in-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ What is Service Granularity in Microservices?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Simple Definition:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧱 Two Types:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-decide-the-granularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 How to decide the granularity?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Rule of Thumb:
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -619,6 +652,52 @@
 <h3 id="in-short">🧠 In short:</h3>
 <blockquote>
 <p>DDD helps you build <strong>software that speaks the business language</strong>, and keeps the complexity where it belongs — <strong>in the business rules</strong>, not in the plumbing.</p>
+</blockquote>
+<hr />
+<h3 id="what-is-service-granularity-in-microservices">✅ What is <strong>Service Granularity</strong> in Microservices?</h3>
+<p><strong>Service Granularity</strong> refers to <strong>how big or small</strong> a microservice should be — in terms of <strong>scope, responsibilities, and size</strong>.</p>
+<hr />
+<h3 id="simple-definition">🔍 Simple Definition:</h3>
+<blockquote>
+<p>It's about finding the <strong>right size</strong> for a microservice — not too big (like a monolith) and not too small (like nano-services).</p>
+</blockquote>
+<hr />
+<h3 id="two-types">🧱 Two Types:</h3>
+<ol>
+<li>
+<p><strong>Coarse-Grained Service</strong></p>
+</li>
+<li>
+<p>Has <strong>more responsibilities</strong>.</p>
+</li>
+<li>Covers <strong>broader business functionality</strong>.</li>
+<li>Fewer services to manage, but <strong>less flexibility</strong>.</li>
+<li>
+<p>Example: A single <code>OrderService</code> handles creation, tracking, and billing.</p>
+</li>
+<li>
+<p><strong>Fine-Grained Service</strong></p>
+</li>
+<li>
+<p>Has <strong>very specific responsibility</strong>.</p>
+</li>
+<li>More services, each doing <strong>only one thing</strong>.</li>
+<li>Greater flexibility and scalability, but <strong>more complexity</strong> in communication.</li>
+<li>Example: Separate services like <code>OrderCreationService</code>, <code>OrderTrackingService</code>, <code>BillingService</code>.</li>
+</ol>
+<hr />
+<h3 id="how-to-decide-the-granularity">🎯 How to decide the granularity?</h3>
+<p>Ask:</p>
+<ul>
+<li>Does the service handle <strong>one clear business function</strong>?</li>
+<li>Can it be <strong>owned, deployed, and scaled independently</strong>?</li>
+<li>Will splitting or combining services help <strong>reduce communication overhead</strong>?</li>
+<li>Do services often change together? If yes, consider merging.</li>
+</ul>
+<hr />
+<h3 id="rule-of-thumb">🧠 Rule of Thumb:</h3>
+<blockquote>
+<p><strong>A service should do one thing well</strong>, and should <strong>not be so small that it causes excessive inter-service communication</strong>.</p>
 </blockquote>
 
 
