@@ -47,6 +47,8 @@ nav:
       - Introduction: part1/1.1-Introduction.md
       - Core Principles of Microservices: part1/1.2-Core-Principles-of-Microservices.md
       - Designing Microservices: part1/1.3-Designing-Microservices.md
+      - Communication Patterns: part1/1.4-Communication-Patterns.md
+      - Service Contracts: part1/1.4-Service-Contracts.md
   # - Part 2 – Integration & Deployment:
   #     - Integration: part2/integration.md
   #     - Deployment: part2/deployment.md
