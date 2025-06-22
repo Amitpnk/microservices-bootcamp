@@ -52,7 +52,7 @@ nav:
   - Part 2 – Building Microservices:
       - Building Microservice: part2/2.1-Building-Microservice.md
       - Business Case: part2/2.2-Business-Case.md
-      - Building First Microservice: part2/2.2-Business-Case.md
+      - Building First Microservice: part2/2.3-Building-First-Microservice.md
 
 markdown_extensions:
   - admonition
