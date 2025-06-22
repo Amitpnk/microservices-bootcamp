@@ -49,9 +49,10 @@ nav:
       - Designing Microservices: part1/1.3-Designing-Microservices.md
       - Communication Patterns: part1/1.4-Communication-Patterns.md
       - Service Contracts: part1/1.4-Service-Contracts.md
-  # - Part 2 – Integration & Deployment:
-  #     - Integration: part2/integration.md
-  #     - Deployment: part2/deployment.md
+  - Part 2 – Building Microservices:
+      - Building Microservice: part2/2.1-Building-Microservice.md
+      - Business Case: part2/2.2-Business-Case.md
+      - Building First Microservice: part2/2.2-Business-Case.md
 
 markdown_extensions:
   - admonition
