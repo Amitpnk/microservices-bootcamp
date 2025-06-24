@@ -1,0 +1,18 @@
+[
+  {
+    "CategoryId": "68ffabe5-d4bb-408d-88d8-39f4120bc9e4",
+    "Name": "Concerts"
+  },
+  {
+    "CategoryId": "3f2373fa-525b-4118-9cde-c99f8d5a1d38",
+    "Name": "Musicals"
+  },
+  {
+    "CategoryId": "1a58c498-f6fe-4a41-b1ec-bd2f33b1d2b2",
+    "Name": "Plays"
+  },
+  {
+    "CategoryId": "373e11ef-4711-4f07-950b-b3aec7b39565",
+    "Name": "Conference"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "EventId": "e34a9568-52a2-4b6c-85ea-a5463124cd30",
+    "Name": "Arijit Singh Live in Concert",
+    "Price": 5400,
+    "Artist": "Arijit Singh",
+    "Date": "2025-10-01T00:00:00",
+    "Description": "Join India's most beloved playback singer Arijit Singh for his farewell tour across 15 Indian cities. Experience the magic of his soulful voice live.",
+    "ImageUrl": "/img/arijit.jpg",
+    "CategoryId": "68ffabe5-d4bb-408d-88d8-39f4120bc9e4"
+  },
+  {
+    "EventId": "f14b62ec-376c-43c8-bb53-a3cb167f16a2",
+    "Name": "Comedy Night with Kapil Sharma",
+    "Price": 5500,
+    "Artist": "Kapil Sharma",
+    "Date": "2026-01-01T00:00:00",
+    "Description": "India's comedy king Kapil Sharma brings his hilarious team for a live show that will leave you in splits. Featuring Sunil Grover, Krushna Abhishek and other special guests!",
+    "ImageUrl": "/img/kapil.jpg",
+    "CategoryId": "68ffabe5-d4bb-408d-88d8-39f4120bc9e4"
+  },
+  {
+    "EventId": "7ee7bfee-bdb3-4c46-90d3-57293f08f366",
+    "Name": "Bharat: The Great Indian Musical",
+    "Price": 10000,
+    "Artist": "Shankar Mahadevan",
+    "Date": "2025-12-01T00:00:00",
+    "Description": "Experience this spectacular musical journey through India's history, composed by Shankar Mahadevan. The show has received rave reviews from critics and audiences alike.",
+    "ImageUrl": "/img/desi-musical.jpg",
+    "CategoryId": "3f2373fa-525b-4118-9cde-c99f8d5a1d38"
+  },
+  {
+    "EventId": "730f67eb-7ef9-4d90-b16d-1cfc381cf20d",
+    "Name": "Mahabharata: The Eternal Epic",
+    "Price": 8500,
+    "Artist": "Pt. Birju Maharaj Troupe",
+    "Date": "2026-02-20T00:00:00",
+    "Description": "Kathak adaptation of the great epic featuring 100+ artists. Directed by Kathak legend Pt. Birju Maharaj.",
+    "ImageUrl": "/img/mahabharata-musical.jpg",
+    "CategoryId": "3f2373fa-525b-4118-9cde-c99f8d5a1d38"
+  }
+]
