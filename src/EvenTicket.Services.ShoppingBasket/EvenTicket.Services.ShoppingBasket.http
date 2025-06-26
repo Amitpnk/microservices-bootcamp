@@ -1,0 +1,6 @@
+@EvenTicket.Services.ShoppingBasket_HostAddress = http://localhost:5136
+
+GET {{EvenTicket.Services.ShoppingBasket_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

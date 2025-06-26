@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenTicket.Services.EventCatalog", "src\EvenTicket.Services.EventCatalog\EvenTicket.Services.EventCatalog.csproj", "{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenTicket.Services.ShoppingBasket", "src\EvenTicket.Services.ShoppingBasket\EvenTicket.Services.ShoppingBasket.csproj", "{FDB37E94-F864-4615-92B5-73CDABA0D659}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +31,24 @@ Global
 		{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1}.Release|x64.Build.0 = Release|Any CPU
 		{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1}.Release|x86.ActiveCfg = Release|Any CPU
 		{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1}.Release|x86.Build.0 = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|x64.Build.0 = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Debug|x86.Build.0 = Debug|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x64.ActiveCfg = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x64.Build.0 = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x86.ActiveCfg = Release|Any CPU
+		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{FDB37E94-F864-4615-92B5-73CDABA0D659} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
