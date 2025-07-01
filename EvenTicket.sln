@@ -9,6 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenTicket.Services.EventCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenTicket.Services.ShoppingBasket", "src\EvenTicket.Services.ShoppingBasket\EvenTicket.Services.ShoppingBasket.csproj", "{FDB37E94-F864-4615-92B5-73CDABA0D659}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenTicket.Services.Discount", "src\EvenTicket.Services.Discount\EvenTicket.Services.Discount.csproj", "{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		src\discount.proto = src\discount.proto
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +52,18 @@ Global
 		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x64.Build.0 = Release|Any CPU
 		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDB37E94-F864-4615-92B5-73CDABA0D659}.Release|x86.Build.0 = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|x64.Build.0 = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Debug|x86.Build.0 = Debug|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|x64.ActiveCfg = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|x64.Build.0 = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|x86.ActiveCfg = Release|Any CPU
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +71,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{67CD4477-85C3-4B1F-8CAB-4D2E686BB0D1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{FDB37E94-F864-4615-92B5-73CDABA0D659} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{EE79E85F-1A9A-470D-B019-5AF2CCFF4CF7} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3921A3B7-68B1-4B7D-8C8D-00391D7B85B8}
 	EndGlobalSection
 EndGlobal
