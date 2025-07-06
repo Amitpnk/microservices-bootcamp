@@ -11,5 +11,6 @@ namespace EvenTicket.Services.ShoppingBasket.Entities
         public Guid UserId { get; set; }
 
         public Collection<BasketLine> BasketLines { get; set; }
+        public Guid? CouponId { get; set; }
     }
 }
