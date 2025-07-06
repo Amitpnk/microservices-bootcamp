@@ -19,7 +19,14 @@ public class DiscountsService : Discounts.DiscountsBase
     public override async Task<GetCouponByIdResponse> GetCoupon(GetCouponByIdRequest request, ServerCallContext context)
     {
         var response = new GetCouponByIdResponse();
+
+        if (!Guid.TryParse(request.CouponId, out var couponGuid))
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid CouponId"));
+
         var coupon = await couponRepository.GetCouponById(Guid.Parse(request.CouponId));
+        if (coupon == null)
+            throw new RpcException(new Status(StatusCode.NotFound, "Coupon not found"));
+
         response.Coupon = new Coupon
         {
             Code = coupon.Code,

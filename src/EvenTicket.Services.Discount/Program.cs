@@ -1,5 +1,6 @@
 using EvenTicket.Services.Discount.DbContexts;
 using EvenTicket.Services.Discount.Repositories;
+using EvenTicket.Services.Discount.Services;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -49,5 +50,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapGrpcService<DiscountsService>();
 app.Run();
