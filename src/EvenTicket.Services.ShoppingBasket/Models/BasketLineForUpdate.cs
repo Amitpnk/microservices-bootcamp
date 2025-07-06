@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace EvenTicket.Services.ShoppingBasket.Models
+namespace EvenTicket.Services.ShoppingBasket.Models;
+
+public record BasketLineForUpdate
 {
-    public record BasketLineForUpdate
-    {
-        [Required]
-        public int TicketAmount { get; set; }
-    }
+    [Required]
+    public int TicketAmount { get; set; }
 }

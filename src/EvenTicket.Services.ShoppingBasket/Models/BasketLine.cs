@@ -1,14 +1,13 @@
-﻿using System;
+using System;
 
-namespace EvenTicket.Services.ShoppingBasket.Models
+namespace EvenTicket.Services.ShoppingBasket.Models;
+
+public record BasketLine
 {
-    public record BasketLine
-    {
-        public Guid BasketLineId { get; set; }
-        public Guid BasketId { get; set; }
-        public Guid EventId { get; set; }
-        public int Price { get; set; }
-        public int TicketAmount { get; set; }
-        public Event Event { get; set; }
-    }
-} 
+    public Guid BasketLineId { get; set; }
+    public Guid BasketId { get; set; }
+    public Guid EventId { get; set; }
+    public int Price { get; set; }
+    public int TicketAmount { get; set; }
+    public Event Event { get; set; }
+}

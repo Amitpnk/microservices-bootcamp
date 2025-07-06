@@ -1,22 +1,21 @@
-﻿using EvenTicket.Services.ShoppingBasket.Entities;
+using EvenTicket.Services.ShoppingBasket.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EvenTicket.Services.ShoppingBasket.Repositories
+namespace EvenTicket.Services.ShoppingBasket.Repositories;
+
+public interface IBasketLinesRepository
 {
-    public interface IBasketLinesRepository
-    {
-        Task<IEnumerable<BasketLine>> GetBasketLines(Guid basketId);
+    Task<IEnumerable<BasketLine>> GetBasketLines(Guid basketId);
 
-        Task<BasketLine> GetBasketLineById(Guid basketLineId);
+    Task<BasketLine> GetBasketLineById(Guid basketLineId);
 
-        Task<BasketLine> AddOrUpdateBasketLine(Guid basketId, BasketLine basketLine);
+    Task<BasketLine> AddOrUpdateBasketLine(Guid basketId, BasketLine basketLine);
 
-        void UpdateBasketLine(BasketLine basketLine);
+    void UpdateBasketLine(BasketLine basketLine);
 
-        void RemoveBasketLine(BasketLine basketLine);
+    void RemoveBasketLine(BasketLine basketLine);
 
-        Task<bool> SaveChanges();
-    }
+    Task<bool> SaveChanges();
 }

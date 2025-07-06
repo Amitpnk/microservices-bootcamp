@@ -1,12 +1,11 @@
-﻿using AutoMapper;
+using AutoMapper;
 
-namespace EvenTicket.Services.ShoppingBasket.Profiles
+namespace EvenTicket.Services.ShoppingBasket.Profiles;
+
+public class EventProfile : Profile
 {
-    public class EventProfile: Profile
+    public EventProfile()
     {
-        public EventProfile()
-        {
-            CreateMap<Entities.Event, Models.Event>().ReverseMap();
-        }
+        CreateMap<Entities.Event, Models.Event>().ReverseMap();
     }
 }

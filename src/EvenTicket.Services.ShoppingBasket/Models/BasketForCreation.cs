@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EvenTicket.Services.ShoppingBasket.Models
+namespace EvenTicket.Services.ShoppingBasket.Models;
+
+public record BasketForCreation
 {
-    public record BasketForCreation
-    {
-        [Required]
-        public Guid UserId { get; set; }
-    }
+    [Required]
+    public Guid UserId { get; set; }
 }
