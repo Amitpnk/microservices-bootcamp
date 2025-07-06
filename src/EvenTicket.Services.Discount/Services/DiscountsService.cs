@@ -5,17 +5,8 @@ using Grpc.Core;
 
 namespace EvenTicket.Services.Discount.Services;
 
-public class DiscountsService : Discounts.DiscountsBase
+public class DiscountsService(IMapper mapper, ICouponRepository couponRepository) : Discounts.DiscountsBase
 {
-    private readonly ICouponRepository couponRepository;
-    private readonly IMapper mapper;
-
-    public DiscountsService(IMapper mapper, ICouponRepository couponRepository)
-    {
-        this.mapper = mapper;
-        this.couponRepository = couponRepository;
-    }
-
     public override async Task<GetCouponByIdResponse> GetCoupon(GetCouponByIdRequest request, ServerCallContext context)
     {
         var response = new GetCouponByIdResponse();

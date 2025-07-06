@@ -1,0 +1,20 @@
+[
+  {
+    "CouponId": "140b49de-a914-435b-980f-ca0187d1733f",
+    "Code": "BeNice",
+    "Amount": 10,
+    "AlreadyUsed": false
+  },
+  {
+    "CouponId": "c1e882f4-6379-4cf3-a617-106729662c27",
+    "Code": "Awesome",
+    "Amount": 20,
+    "AlreadyUsed": false
+  },
+  {
+    "CouponId": "a42b824b-f719-4f3e-a894-1026fa0560d7",
+    "Code": "AlmostFree",
+    "Amount": 100,
+    "AlreadyUsed": false
+  }
+]
