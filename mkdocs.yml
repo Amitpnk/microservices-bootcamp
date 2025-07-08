@@ -55,7 +55,7 @@ nav:
       - Building First Microservice: part2/2.3-Building-First-Microservice-Lab-01.md
       - Adding Microservice: part2/2.4-Adding-Microservice-Lab-02.md
       - Creating Microservice with grpc: part2/2.5-Creating-Microservice-Via-grpc-Lab-03.md
-      - Asynchronous Communication between Microservices: part2/2.5-Creating-Microservice-Via-grpc-Lab-03.md
+      - Asynchronous Communication between Microservices: part2/2.6-Adding-Asynchronous-Communication-Lab-04.md
 
 markdown_extensions:
   - admonition
