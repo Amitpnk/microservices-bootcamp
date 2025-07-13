@@ -6,6 +6,7 @@ using EvenTicket.Services.ShoppingBasket.Services;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using EvenTicket.Infrastructure.MessagingBus;
 using EvenTicket.Services.ShoppingBasket.Messages;
 using Coupon = EvenTicket.Services.ShoppingBasket.Models.Coupon;
 
@@ -18,7 +19,8 @@ public class BasketsController(
     IMapper mapper,
     IConfiguration configuration,
     ILogger<BasketsController> logger,
-    ILogger<DiscountService> discountLogger)
+    ILogger<DiscountService> discountLogger,
+    IMessageBus messageBus)
     : ControllerBase
 {
     private readonly string _grpcServiceAddress = configuration["GrpcService:Address"];
@@ -93,6 +95,20 @@ public class BasketsController(
 
             int total = 0;
 
+            foreach (var b in basket.BasketLines)
+            {
+                var basketLineMessage = new BasketLineMessage
+                {
+                    BasketLineId = b.BasketLineId,
+                    Price = b.Price,
+                    TicketAmount = b.TicketAmount
+                };
+
+                total += b.Price * b.TicketAmount;
+
+                basketCheckoutMessage.BasketLines.Add(basketLineMessage);
+            }
+
             //apply discount by talking to the discount service
             Coupon coupon = null;
 
@@ -104,17 +120,28 @@ public class BasketsController(
                 coupon = await discountService.GetCoupon(basket.CouponId.Value);
             }
 
+
             if (coupon != null)
             {
-                total = total - coupon.Amount;
+                basketCheckoutMessage.BasketTotal = total - coupon.Amount;
             }
             else
             {
-                total = total;
+                basketCheckoutMessage.BasketTotal = total;
+            }
+
+            try
+            {
+                await messageBus.PublishMessage(basketCheckoutMessage, "checkoutmessage");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
 
             await basketRepository.ClearBasket(basketCheckout.BasketId);
-            return Ok();
+            return Accepted(basketCheckoutMessage);
         }
         catch (Exception e)
         {

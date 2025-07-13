@@ -1,3 +1,4 @@
+using EvenTicket.Infrastructure.MessagingBus;
 using EvenTicket.Services.ShoppingBasket.DbContexts;
 using EvenTicket.Services.ShoppingBasket.Repositories;
 using EvenTicket.Services.ShoppingBasket.Services;
@@ -14,6 +15,8 @@ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddScoped<IBasketRepository, BasketRepository>();
 services.AddScoped<IBasketLinesRepository, BasketLinesRepository>();
 services.AddScoped<IEventRepository, EventRepository>();
+services.AddScoped<IMessageBus, AzServiceBusMessageBus>();
+
 //todo: adding eventcatalog url
 services.AddHttpClient<IEventCatalogService, EventCatalogService>(c =>
     c.BaseAddress = new Uri(builder.Configuration["ApiConfigs:EventCatalog:Uri"]));
@@ -22,6 +25,8 @@ services.AddDbContext<ShoppingBasketDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+
 
 services.AddSwaggerGen();
 services.AddControllers();

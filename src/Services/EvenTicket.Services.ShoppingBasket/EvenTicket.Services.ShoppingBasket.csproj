@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\EvenTicket.Infrastructure.Messages\EvenTicket.Infrastructure.Messages.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\EvenTicket.Infrastructure.MessagingBus\EvenTicket.Infrastructure.MessagingBus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
