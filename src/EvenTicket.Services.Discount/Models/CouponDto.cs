@@ -1,6 +1,6 @@
 namespace EvenTicket.Services.Discount.Models;
 
-public class CouponDto
+public record CouponDto
 {
     public Guid CouponId { get; set; }
     public string Code { get; set; }
