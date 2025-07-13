@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using EvenTicket.Services.ShoppingBasket.Entities;
 
 namespace EvenTicket.Services.ShoppingBasket.Repositories;

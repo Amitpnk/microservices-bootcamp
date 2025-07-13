@@ -1,6 +1,3 @@
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using EvenTicket.Services.ShoppingBasket.Entities;
 using EvenTicket.Services.ShoppingBasket.Extensions;
 

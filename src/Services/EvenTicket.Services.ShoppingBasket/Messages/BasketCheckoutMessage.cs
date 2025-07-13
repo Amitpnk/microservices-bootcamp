@@ -1,6 +1,8 @@
-namespace EvenTicket.Services.ShoppingBasket.Models;
+﻿using EvenTicket.Infrastructure.Messages;
 
-public class BasketCheckout
+namespace EvenTicket.Services.ShoppingBasket.Messages;
+
+public class BasketCheckoutMessage : IntegrationBaseMessage
 {
     public Guid BasketId { get; set; }
 
@@ -14,9 +16,14 @@ public class BasketCheckout
     public string Country { get; set; }
     public Guid UserId { get; set; }
 
+
     //payment information
     public string CardNumber { get; set; }
     public string CardName { get; set; }
     public string CardExpiration { get; set; }
-    public string CvvCode { get; set; }
+
+    //order info
+    public List<BasketLineMessage> BasketLines { get; set; }
+    public int BasketTotal { get; set; }
 }
+

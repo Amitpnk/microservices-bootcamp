@@ -1,14 +1,13 @@
 using AutoMapper;
+using EvenTicket.Grpc;
 using EvenTicket.Services.ShoppingBasket.Models;
 using EvenTicket.Services.ShoppingBasket.Repositories;
+using EvenTicket.Services.ShoppingBasket.Services;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using EvenTicket.Grpc;
-using EvenTicket.Services.ShoppingBasket.Services;
-using static Azure.Core.HttpHeader;
+using EvenTicket.Services.ShoppingBasket.Messages;
 using Coupon = EvenTicket.Services.ShoppingBasket.Models.Coupon;
-using Microsoft.Extensions.Logging;
 
 namespace EvenTicket.Services.ShoppingBasket.Controllers;
 
@@ -88,6 +87,9 @@ public class BasketsController(
             {
                 return BadRequest();
             }
+
+            var basketCheckoutMessage = mapper.Map<BasketCheckoutMessage>(basketCheckout);
+            basketCheckoutMessage.BasketLines = new List<BasketLineMessage>();
 
             int total = 0;
 

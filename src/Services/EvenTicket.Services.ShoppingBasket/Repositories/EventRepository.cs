@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using EvenTicket.Services.ShoppingBasket.DbContexts;
 using EvenTicket.Services.ShoppingBasket.Entities;
 using Microsoft.EntityFrameworkCore;

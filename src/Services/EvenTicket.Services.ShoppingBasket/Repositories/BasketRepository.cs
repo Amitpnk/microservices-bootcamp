@@ -1,10 +1,6 @@
 using EvenTicket.Services.ShoppingBasket.DbContexts;
 using EvenTicket.Services.ShoppingBasket.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EvenTicket.Services.ShoppingBasket.Repositories;
 

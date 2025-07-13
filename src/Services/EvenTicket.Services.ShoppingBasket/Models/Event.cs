@@ -1,5 +1,3 @@
-using System;
-
 namespace EvenTicket.Services.ShoppingBasket.Models;
 
 public record Event
