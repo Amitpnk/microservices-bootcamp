@@ -1,7 +1,6 @@
 using EvenTicket.Services.EventCatalog.DbContexts;
 using EvenTicket.Services.EventCatalog.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);

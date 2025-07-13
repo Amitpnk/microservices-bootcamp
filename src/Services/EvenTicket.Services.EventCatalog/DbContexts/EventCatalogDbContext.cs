@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EvenTicket.Services.EventCatalog.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
-using EvenTicket.Services.EventCatalog.Entities;
 
 namespace EvenTicket.Services.EventCatalog.DbContexts;
 
