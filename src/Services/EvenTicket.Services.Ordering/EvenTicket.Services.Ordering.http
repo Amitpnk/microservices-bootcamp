@@ -1,0 +1,6 @@
+@EvenTicket.Services.Ordering_HostAddress = http://localhost:5052
+
+GET {{EvenTicket.Services.Ordering_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
