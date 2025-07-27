@@ -39,7 +39,7 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
 
         var client = new ServiceBusClient(serviceBusConnectionString);
         _checkoutMessageProcessor = client.CreateProcessor(_checkoutMessageTopic, checkoutSubscription, new ServiceBusProcessorOptions());
-        _orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, orderPaymentUpdatedSubscription, new ServiceBusProcessorOptions());
+        //_orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, orderPaymentUpdatedSubscription, new ServiceBusProcessorOptions());
 
 
 
@@ -58,53 +58,56 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
     {
         _checkoutMessageProcessor.ProcessMessageAsync += OnCheckoutMessageReceived;
         _checkoutMessageProcessor.ProcessErrorAsync += OnServiceBusException;
-
-        _orderPaymentUpdateProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
-        _orderPaymentUpdateProcessor.ProcessErrorAsync += OnServiceBusException;
-
         _checkoutMessageProcessor.StartProcessingAsync();
-        _orderPaymentUpdateProcessor.StartProcessingAsync();
+
+
+        //_orderPaymentUpdateProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
+        //_orderPaymentUpdateProcessor.ProcessErrorAsync += OnServiceBusException;
+        //_orderPaymentUpdateProcessor.StartProcessingAsync();
     }
 
     private async Task OnCheckoutMessageReceived(ProcessMessageEventArgs args)
     {
-        var body = args.Message.Body.ToString();
-        var basketCheckoutMessage = JsonSerializer.Deserialize<BasketCheckoutMessage>(body);
-
-        Guid orderId = Guid.NewGuid();
-
-        var order = new Order
-        {
-            UserId = basketCheckoutMessage.UserId,
-            Id = orderId,
-            OrderPaid = false,
-            OrderPlaced = DateTime.Now,
-            OrderTotal = basketCheckoutMessage.BasketTotal
-        };
-
-        await _orderRepository.AddOrder(order);
-
-        var orderPaymentRequestMessage = new OrderPaymentRequestMessage
-        {
-            CardExpiration = basketCheckoutMessage.CardExpiration,
-            CardName = basketCheckoutMessage.CardName,
-            CardNumber = basketCheckoutMessage.CardNumber,
-            OrderId = orderId,
-            Total = basketCheckoutMessage.BasketTotal
-        };
-
         try
         {
-            //todo: check values
-            await _messageBus.PublishMessage(orderPaymentRequestMessage, _checkoutMessageTopic);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error publishing message: {e.Message}");
-            throw;
-        }
+            var body = args.Message.Body.ToString();
+            var basketCheckoutMessage = JsonSerializer.Deserialize<BasketCheckoutMessage>(body);
 
-        await args.CompleteMessageAsync(args.Message);
+            Guid orderId = Guid.NewGuid();
+
+            var order = new Order
+            {
+                UserId = basketCheckoutMessage.UserId,
+                Id = orderId,
+                OrderPaid = false,
+                OrderPlaced = DateTime.Now,
+                OrderTotal = basketCheckoutMessage.BasketTotal
+            };
+
+            await _orderRepository.AddOrder(order);
+
+            //var orderPaymentRequestMessage = new OrderPaymentRequestMessage
+            //{
+            //    CardExpiration = basketCheckoutMessage.CardExpiration,
+            //    CardName = basketCheckoutMessage.CardName,
+            //    CardNumber = basketCheckoutMessage.CardNumber,
+            //    OrderId = orderId,
+            //    Total = basketCheckoutMessage.BasketTotal
+            //};
+
+            //await _messageBus.PublishMessage(orderPaymentRequestMessage, _checkoutMessageTopic);
+
+            // Complete the message only after successful processing
+            await args.CompleteMessageAsync(args.Message);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception and optionally dead-letter the message
+            Console.WriteLine($"Error processing message: {ex.Message}");
+
+            // Optionally move the message to the dead-letter queue
+            await args.DeadLetterMessageAsync(args.Message, "ProcessingFailed", ex.Message);
+        }
     }
 
     private async Task OnOrderPaymentUpdateReceived(ProcessMessageEventArgs args)

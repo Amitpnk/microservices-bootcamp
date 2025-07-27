@@ -92,6 +92,8 @@ public class BasketsController(
 
             var basketCheckoutMessage = mapper.Map<BasketCheckoutMessage>(basketCheckout);
             basketCheckoutMessage.BasketLines = new List<BasketLineMessage>();
+            basketCheckoutMessage.CreationDateTime = DateTime.UtcNow;
+            basketCheckoutMessage.Id = Guid.NewGuid();
 
             int total = 0;
 
@@ -130,6 +132,8 @@ public class BasketsController(
                 basketCheckoutMessage.BasketTotal = total;
             }
 
+
+          
             try
             {
                 await messageBus.PublishMessage(basketCheckoutMessage, "checkoutmessage");
@@ -140,7 +144,7 @@ public class BasketsController(
                 throw;
             }
 
-            await basketRepository.ClearBasket(basketCheckout.BasketId);
+            //await basketRepository.ClearBasket(basketCheckout.BasketId);
             return Accepted(basketCheckoutMessage);
         }
         catch (Exception e)

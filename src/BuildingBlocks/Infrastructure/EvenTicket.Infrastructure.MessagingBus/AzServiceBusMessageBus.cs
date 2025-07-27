@@ -1,9 +1,8 @@
-﻿using Eventick.Integration.MessagingBus;
-using System.Text;
-using Azure.Messaging.ServiceBus;
-using System.Text.Json;
+﻿using Azure.Messaging.ServiceBus;
 using EvenTicket.Infrastructure.Messages;
 using Microsoft.Extensions.Logging;
+using System.Text;
+using System.Text.Json;
 
 namespace EvenTicket.Infrastructure.MessagingBus;
 
@@ -13,9 +12,7 @@ public class AzServiceBusMessageBus : IMessageBus, IAsyncDisposable
     private readonly ServiceBusClient _client;
     public AzServiceBusMessageBus(ILogger<AzServiceBusMessageBus> logger)
     {
-        string connectionString =
-                "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=<your_key>";
-
+        string connectionString = "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=<your_key>";
 
         _client = new ServiceBusClient(connectionString);
         _logger = logger;
@@ -36,7 +33,7 @@ public class AzServiceBusMessageBus : IMessageBus, IAsyncDisposable
 
         try
         {
-            var jsonMessage = JsonSerializer.Serialize(message);
+            var jsonMessage = JsonSerializer.Serialize(message, message.GetType());
             var serviceBusMessage = new ServiceBusMessage(Encoding.UTF8.GetBytes(jsonMessage))
             {
                 CorrelationId = Guid.NewGuid().ToString(),
