@@ -10,13 +10,12 @@ public class AzServiceBusMessageBus : IMessageBus, IAsyncDisposable
 {
     private readonly ILogger<AzServiceBusMessageBus> _logger;
     private readonly ServiceBusClient _client;
-    public AzServiceBusMessageBus(ILogger<AzServiceBusMessageBus> logger)
-    {
-        string connectionString = "Endpoint=sb://<your-namespace>.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=<your_key>";
 
+    public AzServiceBusMessageBus(ILogger<AzServiceBusMessageBus> logger, string connectionString)
+    {
         _client = new ServiceBusClient(connectionString);
         _logger = logger;
-    }
+    } 
     public async Task PublishMessage(IntegrationBaseMessage message, string topicName)
     {
         if (message == null)

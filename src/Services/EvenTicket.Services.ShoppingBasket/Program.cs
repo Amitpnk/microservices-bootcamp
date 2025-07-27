@@ -15,7 +15,15 @@ services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddScoped<IBasketRepository, BasketRepository>();
 services.AddScoped<IBasketLinesRepository, BasketLinesRepository>();
 services.AddScoped<IEventRepository, EventRepository>();
-services.AddScoped<IMessageBus, AzServiceBusMessageBus>();
+//services.AddScoped<IMessageBus, AzServiceBusMessageBus>();
+
+services.AddSingleton<IMessageBus>(sp =>
+{
+    var logger = sp.GetRequiredService<ILogger<AzServiceBusMessageBus>>();
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var connectionString = configuration.GetValue<string>("ServiceBusConnectionString");
+    return new AzServiceBusMessageBus(logger, connectionString);
+});
 
 //todo: adding eventcatalog url
 services.AddHttpClient<IEventCatalogService, EventCatalogService>(c =>

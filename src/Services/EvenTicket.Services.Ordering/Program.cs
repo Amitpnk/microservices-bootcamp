@@ -27,8 +27,14 @@ optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultCo
 
 services.AddSingleton(new OrderRepository(optionsBuilder.Options));
 
-services.AddSingleton<IMessageBus, AzServiceBusMessageBus>();
-
+//services.AddSingleton<IMessageBus, AzServiceBusMessageBus>();
+services.AddSingleton<IMessageBus>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var connectionString = configuration.GetValue<string>("ServiceBusConnectionString");
+    var logger = sp.GetRequiredService<ILogger<AzServiceBusMessageBus>>();
+    return new AzServiceBusMessageBus(logger, connectionString);
+});
 services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordering API", Version = "v1" });
