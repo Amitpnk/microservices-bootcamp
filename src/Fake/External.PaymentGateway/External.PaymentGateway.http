@@ -1,0 +1,6 @@
+@External.PaymentGateway_HostAddress = http://localhost:5161
+
+GET {{External.PaymentGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
