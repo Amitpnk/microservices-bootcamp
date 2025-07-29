@@ -5,7 +5,7 @@ namespace EvenTicket.Services.Ordering.Controllers;
 
 [ApiController]
 [Route("api/order")]
-public class OrderController : Controller
+public class OrderController : ControllerBase
 {
     private readonly IOrderRepository _orderRepository;
 
