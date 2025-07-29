@@ -40,18 +40,6 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
         var client = new ServiceBusClient(serviceBusConnectionString);
         _checkoutMessageProcessor = client.CreateProcessor(_checkoutMessageTopic, checkoutSubscription, new ServiceBusProcessorOptions());
         _orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, orderPaymentUpdatedSubscription, new ServiceBusProcessorOptions());
-
-
-
-        //var subscriptionName = _configuration.GetValue<string>("SubscriptionName");
-        
-        
-        
-
-        //var client = new ServiceBusClient(serviceBusConnectionString);
-
-        //_checkoutMessageProcessor = client.CreateProcessor(_checkoutMessageTopic, subscriptionName, new ServiceBusProcessorOptions());
-        //_orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, subscriptionName, new ServiceBusProcessorOptions());
     }
 
     public void Start()
@@ -94,8 +82,10 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
                 OrderId = orderId,
                 Total = basketCheckoutMessage.BasketTotal
             };
+            orderPaymentRequestMessage.CreationDateTime = DateTime.UtcNow;
+            orderPaymentRequestMessage.Id = Guid.NewGuid();
 
-            await _messageBus.PublishMessage(orderPaymentRequestMessage, _checkoutMessageTopic);
+            await _messageBus.PublishMessage(orderPaymentRequestMessage, _orderPaymentUpdatedMessageTopic);
 
             // Complete the message only after successful processing
             await args.CompleteMessageAsync(args.Message);
