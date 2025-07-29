@@ -30,7 +30,7 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
         var orderPaymentUpdatedSubscription = _configuration.GetValue<string>("OrderPaymentUpdatedSubscription");
 
         var serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-        //var serviceBusConnectionString = serviceBusSettings.Value.ConnectionString;
+        
 
         _checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
         _orderPaymentUpdatedMessageTopic = _configuration.GetValue<string>("OrderPaymentUpdatedMessageTopic");
@@ -39,14 +39,14 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
 
         var client = new ServiceBusClient(serviceBusConnectionString);
         _checkoutMessageProcessor = client.CreateProcessor(_checkoutMessageTopic, checkoutSubscription, new ServiceBusProcessorOptions());
-        //_orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, orderPaymentUpdatedSubscription, new ServiceBusProcessorOptions());
+        _orderPaymentUpdateProcessor = client.CreateProcessor(_orderPaymentUpdatedMessageTopic, orderPaymentUpdatedSubscription, new ServiceBusProcessorOptions());
 
 
 
         //var subscriptionName = _configuration.GetValue<string>("SubscriptionName");
-        //var serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-        //_checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
-        //_orderPaymentUpdatedMessageTopic = _configuration.GetValue<string>("OrderPaymentUpdatedMessageTopic");
+        
+        
+        
 
         //var client = new ServiceBusClient(serviceBusConnectionString);
 
@@ -61,9 +61,9 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
         _checkoutMessageProcessor.StartProcessingAsync();
 
 
-        //_orderPaymentUpdateProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
-        //_orderPaymentUpdateProcessor.ProcessErrorAsync += OnServiceBusException;
-        //_orderPaymentUpdateProcessor.StartProcessingAsync();
+        _orderPaymentUpdateProcessor.ProcessMessageAsync += OnOrderPaymentUpdateReceived;
+        _orderPaymentUpdateProcessor.ProcessErrorAsync += OnServiceBusException;
+        _orderPaymentUpdateProcessor.StartProcessingAsync();
     }
 
     private async Task OnCheckoutMessageReceived(ProcessMessageEventArgs args)
@@ -86,16 +86,16 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
 
             await _orderRepository.AddOrder(order);
 
-            //var orderPaymentRequestMessage = new OrderPaymentRequestMessage
-            //{
-            //    CardExpiration = basketCheckoutMessage.CardExpiration,
-            //    CardName = basketCheckoutMessage.CardName,
-            //    CardNumber = basketCheckoutMessage.CardNumber,
-            //    OrderId = orderId,
-            //    Total = basketCheckoutMessage.BasketTotal
-            //};
+            var orderPaymentRequestMessage = new OrderPaymentRequestMessage
+            {
+                CardExpiration = basketCheckoutMessage.CardExpiration,
+                CardName = basketCheckoutMessage.CardName,
+                CardNumber = basketCheckoutMessage.CardNumber,
+                OrderId = orderId,
+                Total = basketCheckoutMessage.BasketTotal
+            };
 
-            //await _messageBus.PublishMessage(orderPaymentRequestMessage, _checkoutMessageTopic);
+            await _messageBus.PublishMessage(orderPaymentRequestMessage, _checkoutMessageTopic);
 
             // Complete the message only after successful processing
             await args.CompleteMessageAsync(args.Message);
