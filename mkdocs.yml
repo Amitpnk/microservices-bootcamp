@@ -57,6 +57,7 @@ nav:
       - Creating Microservice with grpc: part2/2.5-Creating-Microservice-Via-grpc-Lab-03.md
       - Asynchronous Communication between Microservices: part2/2.6-Adding-Asynchronous-Communication-Lab-04.md
       - Background Service: part2/2.7-Adding-Background-service-Lab-05.md
+      - Resilience in Microservice: part2/2.8-Making-Microservices-more-resilient-Lab-06.md
 
 
 markdown_extensions:
