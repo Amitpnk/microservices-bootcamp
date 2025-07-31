@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace EvenTicket.Services.Payment.Worker;
 
-public class ServiceBusListener : IHostedService
+public class ServiceBusListener : BackgroundService
 {
     private readonly ILogger logger;
     private readonly IConfiguration configuration;
@@ -22,6 +22,8 @@ public class ServiceBusListener : IHostedService
     public ServiceBusListener(IConfiguration configuration, ILoggerFactory loggerFactory, IExternalGatewayPaymentService externalGatewayPaymentService, IMessageBus messageBus)
     {
         logger = loggerFactory.CreateLogger<ServiceBusListener>();
+        logger.LogInformation("ServiceBusListener constructor called.");
+
         orderPaymentUpdatedMessageTopic = configuration.GetValue<string>("OrderPaymentUpdatedMessageTopic");
 
         this.configuration = configuration;
@@ -29,7 +31,34 @@ public class ServiceBusListener : IHostedService
         this.messageBus = messageBus;
     }
 
-    public async Task StartAsync(CancellationToken cancellationToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        logger.LogInformation("ServiceBusListener starting execution.");
+        try
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                await StartProcessorAsync(stoppingToken);
+                logger.LogInformation("ServiceBusListener started and processing messages.");
+                await Task.Delay(1000, stoppingToken);
+            }
+        }
+        catch (TaskCanceledException)
+        {
+            logger.LogWarning("ServiceBusListener execution canceled.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Unhandled exception in ServiceBusListener.ExecuteAsync.");
+            throw;
+        }
+        finally
+        {
+            await StopProcessorAsync(stoppingToken);
+        }
+    }
+
+    private async Task StartProcessorAsync(CancellationToken cancellationToken)
     {
         string connectionString = configuration.GetValue<string>("ServiceBusConnectionString");
         string topic = configuration.GetValue<string>("OrderPaymentRequestMessageTopic");
@@ -51,7 +80,7 @@ public class ServiceBusListener : IHostedService
     }
 
 
-    public async Task StopAsync(CancellationToken cancellationToken)
+    private async Task StopProcessorAsync(CancellationToken cancellationToken)
     {
         logger.LogDebug($"ServiceBusListener stopping.");
         if (processor != null)
