@@ -1,14 +1,30 @@
+using System;
+using System.Runtime.InteropServices.ComTypes;
 using EvenTicket.Infrastructure.MessagingBus;
 using EvenTicket.Services.ShoppingBasket.DbContexts;
 using EvenTicket.Services.ShoppingBasket.Repositories;
 using EvenTicket.Services.ShoppingBasket.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var services = builder.Services;
+
+services.AddHttpClient("EventCatalog", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiConfigs:EventCatalog:Uri"]);
+})
+    .AddPolicyHandler((serviceProvider, request) =>
+    {
+        var logger = serviceProvider.GetRequiredService<ILoggerFactory>()
+            .CreateLogger("EventCatalogRetryPolicy");
+        return GetRetryPolicy(logger);
+    });
 
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -25,9 +41,7 @@ services.AddSingleton<IMessageBus>(sp =>
     return new AzServiceBusMessageBus(logger, connectionString);
 });
 
-//todo: adding eventcatalog url
-services.AddHttpClient<IEventCatalogService, EventCatalogService>(c =>
-    c.BaseAddress = new Uri(builder.Configuration["ApiConfigs:EventCatalog:Uri"]));
+builder.Services.AddTransient<IEventCatalogService, EventCatalogService>();
 
 services.AddDbContext<ShoppingBasketDbContext>(options =>
 {
@@ -68,3 +82,19 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy(ILogger logger)
+{
+    return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .WaitAndRetryAsync(
+            3,
+            retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+            (outcome, timespan, retryAttempt, context) =>
+            {
+                logger.LogWarning(outcome.Exception,
+                    $"Retry {retryAttempt} after {timespan.TotalSeconds}s " +
+                    $"due to: {outcome.Exception?.Message ?? outcome.Result?.ReasonPhrase ?? "Unknown error"}");
+            });
+}

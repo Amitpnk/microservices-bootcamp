@@ -35,21 +35,6 @@ public class DiscountController(ICouponRepository couponRepository, IMapper mapp
         return Ok(mapper.Map<CouponDto>(coupon));
     }
 
-    [ProducesResponseType((int)HttpStatusCode.NotFound)]
-    [HttpGet("error/{couponId}")]
-    public async Task<IActionResult> GetDiscountForCode2(Guid couponId)
-    {
-
-        return new StatusCodeResult(StatusCodes.Status500InternalServerError);
-
-        var coupon = await couponRepository.GetCouponById(couponId);
-
-        if (coupon == null)
-            return NotFound();
-
-        return Ok(mapper.Map<CouponDto>(coupon));
-    }
-
     [HttpPut("use/{couponId}")]
     public async Task<IActionResult> UseCoupon(Guid couponId)
     {

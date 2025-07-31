@@ -18,4 +18,11 @@ public class PaymentApproverController : ControllerBase
 
         return Ok(false);
     }
+
+
+    [HttpPost("error")]
+    public IActionResult TryPayment2([FromBody] PaymentDto payment)
+    {
+        throw new InvalidOperationException("Internal error");
+    }
 }
