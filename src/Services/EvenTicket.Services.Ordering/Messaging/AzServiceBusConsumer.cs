@@ -15,6 +15,7 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
 
     private readonly string _checkoutMessageTopic;
     private readonly string _orderPaymentUpdatedMessageTopic;
+    private readonly string _orderPaymentRequestTopic;
 
     private readonly ServiceBusProcessor _checkoutMessageProcessor;
     private readonly ServiceBusProcessor _orderPaymentUpdateProcessor;
@@ -34,7 +35,7 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
 
         _checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
         _orderPaymentUpdatedMessageTopic = _configuration.GetValue<string>("OrderPaymentUpdatedMessageTopic");
-
+        _orderPaymentRequestTopic = _configuration.GetValue<string>("OrderPaymentRequestMessageTopic");
 
 
         var client = new ServiceBusClient(serviceBusConnectionString);
@@ -85,7 +86,7 @@ public class AzServiceBusConsumer : IAzServiceBusConsumer
             orderPaymentRequestMessage.CreationDateTime = DateTime.UtcNow;
             orderPaymentRequestMessage.Id = Guid.NewGuid();
 
-            await _messageBus.PublishMessage(orderPaymentRequestMessage, _orderPaymentUpdatedMessageTopic);
+            await _messageBus.PublishMessage(orderPaymentRequestMessage, _orderPaymentRequestTopic);
 
             // Complete the message only after successful processing
             await args.CompleteMessageAsync(args.Message);
