@@ -20,7 +20,7 @@ builder.Services.AddHttpClient("ExternalGateway", client =>
             .CreateLogger("ExternalGatewayRetryPolicy");
         var retryPolicy = GetRetryPolicy(logger);
         var circuitBreakerPolicy = GetCircuitBreakerPolicy(logger);
-
+        //return retryPolicy;
         return Policy.WrapAsync(retryPolicy, circuitBreakerPolicy);
     });
 
