@@ -1,0 +1,6 @@
+@EvenTicket.Gateways.WebAPI_HostAddress = http://localhost:5078
+
+GET {{EvenTicket.Gateways.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
