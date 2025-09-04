@@ -1,6 +1,19 @@
-@EvenTicket.Services.EventCatalog_HostAddress = http://localhost:5160
+@EvenTicket.Services.EventCatalog_HostAddress = https://localhost:5050
 
-GET {{EvenTicket.Services.EventCatalog_HostAddress}}/weatherforecast/
+### Get all categories
+GET {{EvenTicket.Services.EventCatalog_HostAddress}}/api/Category
+Accept: application/json
+
+###
+
+### Get all events (optionally filter by categoryId)
+GET {{EvenTicket.Services.EventCatalog_HostAddress}}/api/Event?categoryId={{categoryId}}
+Accept: application/json
+
+###
+
+### Get event by eventId
+GET {{EvenTicket.Services.EventCatalog_HostAddress}}/api/Event/{{eventId}}
 Accept: application/json
 
 ###
