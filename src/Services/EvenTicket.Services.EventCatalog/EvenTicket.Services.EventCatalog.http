@@ -1,4 +1,6 @@
 @EvenTicket.Services.EventCatalog_HostAddress = https://localhost:5050
+@categoryId = 68ffabe5-d4bb-408d-88d8-39f4120bc9e4
+@eventId = e34a9568-52a2-4b6c-85ea-a5463124cd30
 
 ### Get all categories
 GET {{EvenTicket.Services.EventCatalog_HostAddress}}/api/Category
