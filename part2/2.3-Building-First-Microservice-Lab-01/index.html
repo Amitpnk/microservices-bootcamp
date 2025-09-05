@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive guide to mastering microservices architecture.">
+      
+      
+      
+      
+        <link rel="prev" href="../2.2-Business-Case/">
+      
+      
+        <link rel="next" href="../2.4-Adding-Microservice-Lab-02/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Building First Microservice - Microservices Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-first-microservice-eventcatalogservice" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microservices Bootcamp" class="md-header__button md-logo" aria-label="Microservices Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microservices Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building First Microservice
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part1/1.1-Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 1 – Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../2.1-Building-Microservice/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 2 – Building Microservices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microservices Bootcamp" class="md-nav__button md-logo" aria-label="Microservices Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Microservices Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part 1 – Foundations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Part 1 – Foundations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/1.1-Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/1.2-Core-Principles-of-Microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core Principles of Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/1.3-Designing-Microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Designing Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/1.4-Communication-Patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/1.4-Service-Contracts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service Contracts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part 2 – Building Microservices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Part 2 – Building Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.1-Building-Microservice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.2-Business-Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Business Case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Building First Microservice
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building First Microservice
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-first-microservice-eventcatalogservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎬 Building First Microservice – EventCatalogService
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎬 Building First Microservice – EventCatalogService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-responsibilities-of-eventcatalogservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧱 1. Responsibilities of EventCatalogService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tech-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 2. Tech Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-core-models-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ 3. Core Models (Example)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-api-endpoints-openapi-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 4. API Endpoints (OpenAPI Spec)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-eventicket-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Creating the EvenTicket Solution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Creating the EvenTicket Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 1. Create the Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-the-event-catalog-web-api-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧱 2. Create the Event Catalog Web API Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-add-the-project-to-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 3. Add the Project to the Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-solution-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 4. Verify Solution Structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-structure-after-creating-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Project Structure after creating project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started-with-code-eventcatalog-microservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started with Code – EventCatalog Microservice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started with Code – EventCatalog Microservice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-disable-nullable-in-csproj" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠 Step 1: Disable Nullable in .csproj
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠 Step 1: Disable Nullable in .csproj">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 What This Does:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-define-domain-models-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Step 2: Define Domain Models (Entities)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Step 2: Define Domain Models (Entities)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-does_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 What This Does:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-dbcontext-for-ef-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Step 3: Create DbContext for EF Core
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-dtos-data-transfer-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 Step 4: Create DTOs (Data Transfer Objects)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differenence-between-class-and-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differenence between Class and Record
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Differenence between Class and Record">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Class:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Record:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-key-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Key Differences:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-asynchronous-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Why Asynchronous Programming?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-async-and-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Understanding async and await
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Understanding async and await">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Rules:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-vs-asynchronous" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚦 Synchronous vs Asynchronous
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚦 Synchronous vs Asynchronous">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-file-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 Synchronous File Read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-file-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 Asynchronous File Read
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-based-asynchronous-pattern-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Task-Based Asynchronous Pattern (TAP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Task-Based Asynchronous Pattern (TAP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-with-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example with Delay:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-tap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benefits of TAP:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-vs-parallel-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔁 Async vs Parallel Programming
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔁 Async vs Parallel Programming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallel-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Example:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Async Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-aspnet-core-api-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Real-World ASP.NET Core API Example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Real-World ASP.NET Core API Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why It Matters:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4-Adding-Microservice-Lab-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.5-Creating-Microservice-Via-grpc-Lab-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Microservice with grpc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.6-Adding-Asynchronous-Communication-Lab-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asynchronous Communication between Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.7-Adding-Background-service-Lab-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.8-Making-Microservices-more-resilient-Lab-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resilience in Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Building First Microservice</h1>
+
+<h2 id="building-first-microservice-eventcatalogservice">🎬 Building First Microservice – <code>EventCatalogService</code></h2>
+<p>The <strong>Event Catalog Service</strong> will be responsible for managing the list of events that users can view and search.</p>
+<h3 id="1-responsibilities-of-eventcatalogservice">🧱 1. <strong>Responsibilities of EventCatalogService</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Get Event by ID</td>
+<td>View full details of a specific event</td>
+</tr>
+<tr>
+<td>List All Events</td>
+<td>Public API to list/search all upcoming events</td>
+</tr>
+<tr>
+<td>Get Category</td>
+<td>Public API to list all Category</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-tech-stack">⚙️ 2. <strong>Tech Stack</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Tech</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language</td>
+<td>C# (.NET 9)</td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>ASP.NET Core Web API</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>SQL Server</td>
+</tr>
+<tr>
+<td>API Docs</td>
+<td>Swagger /Scalar / http / OpenAPI</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Docker</td>
+</tr>
+<tr>
+<td>ORM</td>
+<td>EF Core</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Firstservice" src="../../img/Part2/Firstservice.png" /></p>
+<p><img alt="Models" src="../../img/Part2/Models.png" /></p>
+<p><img alt="WrongMappingModels" src="../../img/Part2/WrongMappingModels.png" /></p>
+<h3 id="3-core-models-example">🛠️ 3. <strong>Core Models (Example)</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Event</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[Required]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">EventId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Price</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Artist</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Description</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ImageUrl</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Category</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Events</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="4-api-endpoints-openapi-spec">🔗 4. <strong>API Endpoints (OpenAPI Spec)</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/events</code></td>
+<td>Get all events</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/events/{id}</code></td>
+<td>Get event by ID</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/Category</code></td>
+<td>Get all categories</td>
+</tr>
+</tbody>
+</table>
+<h3 id="creating-the-eventicket-solution">🛠️ Creating the EvenTicket Solution</h3>
+<h4 id="1-create-the-solution">📦 1. Create the Solution</h4>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>new<span class="w"> </span>sln<span class="w"> </span>-n<span class="w"> </span>EvenTicket
+</code></pre></div>
+<p>This creates a <code>.sln</code> file named <code>EvenTicket.sln</code>.</p>
+<h4 id="2-create-the-event-catalog-web-api-project">🧱 2. Create the Event Catalog Web API Project</h4>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>new<span class="w"> </span>webapi<span class="w"> </span>-n<span class="w"> </span>EvenTicket.Services.EventCatalog<span class="w"> </span>--use-controllers<span class="w"> </span>-o<span class="w"> </span>src/EvenTicket.Services.EventCatalog
+</code></pre></div>
+<ul>
+<li><code>--use-controllers</code> → uses traditional MVC controller pattern.</li>
+<li><code>-n</code> or <code>--name</code>  Sets the project name (and folder name).</li>
+<li><code>-o</code> or <code>--output</code>    Specifies the output directory (default: current folder).</li>
+<li><code>--no-https</code>  Disables HTTPS (not recommended for production).</li>
+<li><code>--framework</code> Targets a specific .NET version (e.g., net9.0).</li>
+<li><code>--use-controllers</code>   Uses controllers instead of minimal APIs.</li>
+<li><code>--no-openapi</code> Disables OpenAPI (Swagger) support.</li>
+</ul>
+<blockquote>
+<p>This creates the microservice project inside the <code>src</code> folder.</p>
+</blockquote>
+<h4 id="3-add-the-project-to-the-solution">🧩 3. Add the Project to the Solution</h4>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>sln<span class="w"> </span>add<span class="w"> </span>src/EvenTicket.Services.EventCatalog/EvenTicket.Services.EventCatalog.csproj
+</code></pre></div>
+<p>This adds your new microservice project to the solution file.</p>
+<h4 id="4-verify-solution-structure">✅ 4. Verify Solution Structure</h4>
+<div class="highlight"><pre><span></span><code>dotnet<span class="w"> </span>sln<span class="w"> </span>list
+</code></pre></div>
+<p>Output should confirm the project is included in the solution.</p>
+<h3 id="project-structure-after-creating-project">📁 Project Structure after creating project</h3>
+<p><img alt="FolderStructureEventTicket" src="../../img/Part2/FolderStructureEventTicket.png" /></p>
+<h2 id="getting-started-with-code-eventcatalog-microservice">Getting Started with Code – EventCatalog Microservice</h2>
+<h3 id="step-1-disable-nullable-in-csproj">🛠 Step 1: Disable Nullable in .csproj</h3>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">&lt;PropertyGroup&gt;</span>
+<span class="w">   </span><span class="nt">&lt;TargetFramework&gt;</span>net9.0<span class="nt">&lt;/TargetFramework&gt;</span>
+<span class="w">   </span><span class="nt">&lt;Nullable&gt;</span>disable<span class="nt">&lt;/Nullable&gt;</span>
+<span class="w">   </span><span class="nt">&lt;ImplicitUsings&gt;</span>enable<span class="nt">&lt;/ImplicitUsings&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/PropertyGroup&gt;</span>
+</code></pre></div>
+<h4 id="what-this-does">🔍 What This Does:</h4>
+<ul>
+<li><TargetFramework>: Specifies .NET 9.0 as the target framework.</li>
+<li><Nullable>disable</Nullable>: Disables nullable reference type checking, which avoids compiler warnings for uninitialized non-nullable reference types.</li>
+<li><ImplicitUsings>enable</ImplicitUsings>: Automatically includes commonly used using directives to reduce boilerplate.</li>
+</ul>
+<blockquote>
+<p>👉 Why: Keeping things simple for demo and learning purposes — especially for beginners not ready to deal with nullable warnings.
+Then create two class file inside Entities folder</p>
+</blockquote>
+<h3 id="step-2-define-domain-models-entities">📁 Step 2: Define Domain Models (Entities)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Category</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Events</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Event</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[Required]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">EventId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Price</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Artist</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Description</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ImageUrl</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="what-this-does_1">🔍 What This Does:</h4>
+<ul>
+<li>Models your core business entities: Category and Event.</li>
+<li>Demonstrates a one-to-many relationship: A Category can have many Events.</li>
+<li>Includes required fields like Name, Artist, Price, and Date.</li>
+</ul>
+<blockquote>
+<p>👉 Why: Clean and simple structure to store and retrieve event listings grouped by category.</p>
+</blockquote>
+<h3 id="step-3-create-dbcontext-for-ef-core">🧠 Step 3: Create DbContext for EF Core</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nf">EventCatalogDbContext</span><span class="p">(</span><span class="n">DbContextOptions</span><span class="o">&lt;</span><span class="n">EventCatalogDbContext</span><span class="o">&gt;</span><span class="w"> </span><span class="n">options</span><span class="p">,</span><span class="w"> </span><span class="n">ILogger</span><span class="o">&lt;</span><span class="n">EventCatalogDbContext</span><span class="o">&gt;</span><span class="w"> </span><span class="n">logger</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">DbContext</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DbSet</span><span class="o">&lt;</span><span class="n">Category</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Categories</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DbSet</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Events</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="step-4-create-dtos-data-transfer-objects">🧾 Step 4: Create DTOs (Data Transfer Objects)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">record</span><span class="w"> </span><span class="n">CategoryDto</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">record</span><span class="w"> </span><span class="n">EventDto</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">EventId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Price</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Artist</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Description</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ImageUrl</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Guid</span><span class="w"> </span><span class="n">CategoryId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">CategoryName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>async program</p>
+<h2 id="differenence-between-class-and-record">Differenence between Class and Record</h2>
+<p>In C#, both <strong>class</strong> and <strong>record</strong> are used to define types, but they serve different purposes and have distinct behaviors.</p>
+<h3 id="1-class">1. <strong>Class</strong>:</h3>
+<ul>
+<li>A <strong>class</strong> is a reference type.</li>
+<li>Objects created from a class are stored on the heap, and assignment copies references.</li>
+<li>Best suited for defining objects with behavior (methods) and mutable state.</li>
+<li>Requires explicit implementation for equality comparison.</li>
+<li>Example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Person</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">person1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">};</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">person2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">person1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Both point to the same object.</span>
+<span class="n">person2</span><span class="p">.</span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">35</span><span class="p">;</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">Age</span><span class="p">);</span><span class="w"> </span><span class="c1">// Output: 35</span>
+</code></pre></div>
+<h3 id="2-record">2. <strong>Record</strong>:</h3>
+<ul>
+<li>A <strong>record</strong> is also a reference type (by default), but it is <strong>immutable</strong> by design.</li>
+<li>Introduced in C# 9.0 for defining <strong>data-centric</strong> types.</li>
+<li>Comes with built-in value-based equality.</li>
+<li>Supports concise <strong>with-expressions</strong> for immutability.</li>
+<li>Example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">record</span><span class="w"> </span><span class="nf">Person</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Age</span><span class="p">);</span>
+
+<span class="kt">var</span><span class="w"> </span><span class="n">person1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">person2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">person1</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">35</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// Creates a new object</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">Age</span><span class="p">);</span><span class="w"> </span><span class="c1">// Output: 30</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">person2</span><span class="p">.</span><span class="n">Age</span><span class="p">);</span><span class="w"> </span><span class="c1">// Output: 35</span>
+</code></pre></div>
+<h3 id="3-key-differences">3. <strong>Key Differences</strong>:</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Class</th>
+<th>Record</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td>Reference type</td>
+<td>Reference type (by default)</td>
+</tr>
+<tr>
+<td><strong>Equality</strong></td>
+<td>Reference equality</td>
+<td>Value-based equality</td>
+</tr>
+<tr>
+<td><strong>Immutability</strong></td>
+<td>Mutable by default</td>
+<td>Immutable by default</td>
+</tr>
+<tr>
+<td><strong>Use case</strong></td>
+<td>Best for objects with behavior</td>
+<td>Best for data-centric models</td>
+</tr>
+<tr>
+<td><strong>Copying</strong></td>
+<td>Manual copying needed</td>
+<td>Supports <code>with</code> expressions</td>
+</tr>
+<tr>
+<td><strong>Syntax</strong></td>
+<td><code>class</code> keyword</td>
+<td><code>record</code> keyword</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to Use What?</strong></p>
+<ul>
+<li>Use <strong>class</strong> when you need behavior, state changes, or large mutable objects.</li>
+<li>Use <strong>record</strong> when you need immutable, value-like objects (e.g., DTOs, configuration settings).</li>
+</ul>
+<h2 id="why-asynchronous-programming">🧠 Why Asynchronous Programming?</h2>
+<p>In traditional synchronous programming, <strong>each line of code waits for the previous one to finish</strong>. This becomes a bottleneck when the code performs I/O-bound tasks like:</p>
+<ul>
+<li>Calling external APIs</li>
+<li>Reading or writing files</li>
+<li>Database operations</li>
+<li>Sending emails</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetFromApi</span><span class="p">();</span><span class="w"> </span><span class="c1">// waits for response</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">ReadAllText</span><span class="p">(</span><span class="s">&quot;log.txt&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// waits for disk I/O</span>
+</code></pre></div>
+<p>In high-load environments like web servers, this blocks valuable threads, limiting scalability. Instead, <strong>async programming allows I/O to happen in the background</strong>, letting the thread serve other requests.</p>
+<h2 id="understanding-async-and-await">🔑 Understanding <code>async</code> and <code>await</code></h2>
+<p>The <code>async</code> and <code>await</code> keywords in C# are used to implement asynchronous methods. Think of <code>async</code> as a way to "mark a method for background execution" and <code>await</code> as "pausing without blocking".</p>
+<h3 id="basic-rules">Basic Rules:</h3>
+<ul>
+<li>A method must be marked <code>async</code> to use <code>await</code> inside it.</li>
+<li>An <code>async</code> method returns <code>Task</code>, <code>Task&lt;T&gt;</code>, or <code>ValueTask&lt;T&gt;</code> (avoid <code>void</code> unless it's for event handlers).</li>
+</ul>
+<h3 id="example">Example:</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FetchDataAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HttpClient</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span><span class="s">&quot;https://jsonplaceholder.typicode.com/todos/1&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">json</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Here:</p>
+<ul>
+<li><code>HttpClient.GetStringAsync</code> starts downloading the JSON in the background.</li>
+<li><code>await</code> tells the method to "pause here and resume when done".</li>
+</ul>
+<p>Behind the scenes, the compiler generates a state machine to manage this.</p>
+<h2 id="synchronous-vs-asynchronous">🚦 Synchronous vs Asynchronous</h2>
+<h3 id="synchronous-file-read">🔹 Synchronous File Read</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">ReadFile</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">ReadAllText</span><span class="p">(</span><span class="s">&quot;data.txt&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Blocking</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Blocks the calling thread until the file is read.</li>
+<li>UI becomes unresponsive during this operation.</li>
+</ul>
+<h3 id="asynchronous-file-read">🔹 Asynchronous File Read</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ReadFileAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">ReadAllTextAsync</span><span class="p">(</span><span class="s">&quot;data.txt&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Non-blocking</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Frees up the thread to do other work.</li>
+<li>Recommended for web servers and UI apps.</li>
+</ul>
+<h2 id="task-based-asynchronous-pattern-tap">📦 Task-Based Asynchronous Pattern (TAP)</h2>
+<p>TAP is the standard for asynchronous programming in .NET. You’ll notice many modern .NET APIs return <code>Task</code> or <code>Task&lt;T&gt;</code>.</p>
+<h3 id="example-with-delay">Example with Delay:</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="w"> </span><span class="nf">SimulateDelayAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Starting delay...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3-second non-blocking delay</span>
+<span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Completed.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This mimics real-world delays like network latency or slow APIs.</p>
+<h3 id="benefits-of-tap">Benefits of TAP:</h3>
+<ul>
+<li>Easy chaining: <code>await FetchDataAsync().ContinueWith(...)</code></li>
+<li>Exceptions propagate through <code>Task</code> (can use <code>try-catch</code>)</li>
+<li>Integrates seamlessly with ASP.NET Core, WinForms, and WPF</li>
+</ul>
+<h2 id="async-vs-parallel-programming">🔁 Async vs Parallel Programming</h2>
+<p>It’s common to confuse <strong>asynchronous</strong> with <strong>parallel</strong> programming.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Async</strong></td>
+<td>Non-blocking operations; uses single thread efficiently</td>
+</tr>
+<tr>
+<td><strong>Parallel</strong></td>
+<td>Multiple threads doing work at the same time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parallel-example">Parallel Example:</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Parallel</span><span class="p">.</span><span class="n">For</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Processing {i}&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="async-example">Async Example:</h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="w"> </span><span class="nf">RunInSequenceAsync</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Done&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Use async for I/O-bound tasks and parallel for CPU-bound tasks.</p>
+</blockquote>
+<h2 id="real-world-aspnet-core-api-example">🧪 Real-World ASP.NET Core API Example</h2>
+<p>Let’s build a weather API using <code>async</code>/<code>await</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="na">[ApiController]</span>
+<span class="na">[Route(&quot;api/[controller]</span><span class="s">&quot;)]</span>
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WeatherController</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ControllerBase</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="n">HttpClient</span><span class="w"> </span><span class="n">_httpClient</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">WeatherController</span><span class="p">(</span><span class="n">HttpClient</span><span class="w"> </span><span class="n">httpClient</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">_httpClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">httpClient</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="na">[HttpGet(&quot;forecast&quot;)]</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">IActionResult</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetForecastAsync</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://api.weatherapi.com/v1/current.json?key=demo&amp;q=London&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">_httpClient</span><span class="p">.</span><span class="n">GetStringAsync</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nf">Ok</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="why-it-matters">Why It Matters:</h3>
+<ul>
+<li>The <code>await</code>ed API call doesn't block the request thread.</li>
+<li>Server can serve other requests during the wait.</li>
+<li>Scalable and efficient.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../2.2-Business-Case/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Business Case">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Business Case
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../2.4-Adding-Microservice-Lab-02/" class="md-footer__link md-footer__link--next" aria-label="Next: Adding Microservice">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Adding Microservice
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

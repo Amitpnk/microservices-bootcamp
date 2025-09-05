@@ -1,0 +1,1493 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive guide to mastering microservices architecture.">
+      
+      
+      
+      
+        <link rel="prev" href="../1.4-Communication-Patterns/">
+      
+      
+        <link rel="next" href="../../part2/2.1-Building-Microservice/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Service Contracts - Microservices Bootcamp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#service-contracts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Microservices Bootcamp" class="md-header__button md-logo" aria-label="Microservices Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Microservices Bootcamp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Service Contracts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1.1-Introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 1 – Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part2/2.1-Building-Microservice/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 2 – Building Microservices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Microservices Bootcamp" class="md-nav__button md-logo" aria-label="Microservices Bootcamp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Microservices Bootcamp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part 1 – Foundations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Part 1 – Foundations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.1-Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2-Core-Principles-of-Microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core Principles of Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.3-Designing-Microservices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Designing Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.4-Communication-Patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Communication Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Service Contracts
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service Contracts
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-contracts-api-first-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 Service Contracts – API-First Approach
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📘 Service Contracts – API-First Approach">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-service-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 What is a Service Contract?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-api-first-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 What is API-First Approach?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-commonly-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tools Commonly Used
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits-of-api-first-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Benefits of API-First Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Real-World Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openapi-swagger-scalar-simple-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 OpenAPI / Swagger / Scalar — Simple Explanation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📘 OpenAPI / Swagger / Scalar — Simple Explanation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-openapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 What is OpenAPI?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-swagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠 What is Swagger?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-scalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔡 What is a Scalar?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-they-fit-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 How they fit together:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔙 Backward Compatibility
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔙 Backward Compatibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Backward Compatibility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-is-it-important-in-microservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why is it important in Microservices?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-maintain-backward-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to maintain Backward Compatibility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Setting up Development Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Setting up Development Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tools-ides" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Tools &amp; IDEs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-docker-and-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Docker and Containers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-git-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Git Repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-branching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Branching Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#different-types-of-branching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Different Types of Branching Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌿 Different Types of Branching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-git-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Git Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-github-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. GitHub Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-trunk-based-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Trunk-Based Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-feature-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Feature Branching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-release-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Release Branching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-forking-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Forking Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Part 2 – Building Microservices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Part 2 – Building Microservices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.1-Building-Microservice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.2-Business-Case/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Business Case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.3-Building-First-Microservice-Lab-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building First Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.4-Adding-Microservice-Lab-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.5-Creating-Microservice-Via-grpc-Lab-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating Microservice with grpc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.6-Adding-Asynchronous-Communication-Lab-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asynchronous Communication between Microservices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.7-Adding-Background-service-Lab-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2/2.8-Making-Microservices-more-resilient-Lab-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resilience in Microservice
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="service-contracts">✅ <strong>Service Contracts</strong></h1>
+<h2 id="service-contracts-api-first-approach">📘 Service Contracts – API-First Approach</h2>
+<h3 id="what-is-a-service-contract">🧾 What is a Service Contract?</h3>
+<p>A <strong>service contract</strong> is a <strong>formal agreement</strong> that defines how a service will behave:</p>
+<ul>
+<li>What endpoints it exposes</li>
+<li>What requests it accepts</li>
+<li>What responses it returns</li>
+<li>What status codes and formats it follows</li>
+</ul>
+<p>It’s like a <strong>blueprint</strong> for how services talk to each other — clear, consistent, and agreed upon before building.</p>
+<h3 id="what-is-api-first-approach">🚀 What is API-First Approach?</h3>
+<p>In an <strong>API-First</strong> approach:</p>
+<blockquote>
+<p>You design the <strong>API contract first</strong>, before writing any code.</p>
+</blockquote>
+<p>This means:</p>
+<ul>
+<li>The API spec (OpenAPI/Swagger, Protobuf, GraphQL schema) is the <strong>source of truth</strong>.</li>
+<li>Development teams can work <strong>in parallel</strong> — frontend, backend, QA — all rely on the same contract.</li>
+<li>The contract acts like a <strong>mockable stub or scaffold</strong> early in the project.</li>
+</ul>
+<h3 id="tools-commonly-used">🛠️ Tools Commonly Used</h3>
+<ul>
+<li><strong>OpenAPI/Swagger</strong> – REST APIs</li>
+<li><strong>AsyncAPI</strong> – Asynchronous/message-driven systems</li>
+<li><strong>Protobuf</strong> – gRPC APIs</li>
+<li><strong>Postman / Stoplight</strong> – API design, testing</li>
+<li><strong>Pact</strong> – Contract testing (Consumer/Provider)</li>
+</ul>
+<h3 id="benefits-of-api-first-approach">✅ Benefits of API-First Approach</h3>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🤝 <strong>Better collaboration</strong></td>
+<td>Frontend and backend can develop in parallel</td>
+</tr>
+<tr>
+<td>🧪 <strong>Early testing</strong></td>
+<td>Use mock servers to validate early</td>
+</tr>
+<tr>
+<td>📚 <strong>Auto documentation</strong></td>
+<td>Docs come from the API definition</td>
+</tr>
+<tr>
+<td>✅ <strong>Validation &amp; Safety</strong></td>
+<td>Ensures contracts are followed and changes are tracked</td>
+</tr>
+<tr>
+<td>🚧 <strong>Catch breaking changes</strong></td>
+<td>Prevents accidental API breakage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="real-world-example">🧠 Real-World Example</h3>
+<p>Let’s say you're building an <strong>Order Service</strong>.</p>
+<p>With API-first:</p>
+<ol>
+<li>You first write the <strong>OpenAPI spec</strong>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">paths</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">/orders</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">post</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Create a new order</span>
+<span class="w">      </span><span class="nt">requestBody</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">201</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Order created</span>
+</code></pre></div>
+<ol>
+<li>Frontend uses the spec to build UI.</li>
+<li>Backend uses the spec to generate controllers.</li>
+<li>QA uses the spec to mock and test early.</li>
+</ol>
+<h2 id="openapi-swagger-scalar-simple-explanation">📘 OpenAPI / Swagger / Scalar — Simple Explanation</h2>
+<h3 id="what-is-openapi">🌐 What is <strong>OpenAPI</strong>?</h3>
+<ul>
+<li><strong>OpenAPI</strong> is a <strong>standard format</strong> (a specification) to <strong>describe REST APIs</strong> clearly and consistently.</li>
+<li>It’s like a <strong>contract or blueprint</strong> that shows what API endpoints exist, what data they expect, and what they return.</li>
+<li>Written in <strong>YAML or JSON</strong> format.</li>
+<li>Helps tools <strong>generate documentation, client SDKs, and tests automatically</strong>.</li>
+</ul>
+<hr />
+<h3 id="what-is-swagger">🛠 What is <strong>Swagger</strong>?</h3>
+<ul>
+<li><strong>Swagger</strong> is a <strong>set of tools</strong> built around OpenAPI.</li>
+<li>
+<p>It includes:</p>
+</li>
+<li>
+<p><strong>Swagger Editor</strong> — to write OpenAPI specs.</p>
+</li>
+<li><strong>Swagger UI</strong> — to display API docs as a friendly webpage.</li>
+<li><strong>Swagger Codegen</strong> — to generate client/server code.</li>
+<li>So, <strong>Swagger = tools to work with OpenAPI specs</strong>.</li>
+</ul>
+<hr />
+<h3 id="what-is-a-scalar">🔡 What is a <strong>Scalar</strong>?</h3>
+<ul>
+<li>In API schemas (like OpenAPI or GraphQL), a <strong>Scalar</strong> is a <strong>basic data type</strong> that holds a single value.</li>
+<li>
+<p>Examples of scalars:</p>
+</li>
+<li>
+<p><strong>String</strong> — text like "Hello"</p>
+</li>
+<li><strong>Integer</strong> — whole numbers like 1, 42</li>
+<li><strong>Boolean</strong> — true or false</li>
+<li><strong>Float</strong> — decimal numbers like 3.14</li>
+<li>Scalars are the <strong>building blocks</strong> of request/response data structures.</li>
+</ul>
+<hr />
+<h3 id="how-they-fit-together">🧩 How they fit together:</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAPI</td>
+<td>The <strong>specification</strong> for describing REST APIs</td>
+</tr>
+<tr>
+<td>Swagger</td>
+<td>The <strong>toolset</strong> to create, visualize, and use OpenAPI specs</td>
+</tr>
+<tr>
+<td>Scalar</td>
+<td>Basic <strong>data types</strong> used inside API definitions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backward-compatibility">🔙 Backward Compatibility</h2>
+<h3 id="what-is-backward-compatibility">What is Backward Compatibility?</h3>
+<p><strong>Backward Compatibility</strong> means:</p>
+<blockquote>
+<p>When you <strong>update a service or API</strong>, the new version still <strong>works with older clients or consumers</strong> without breaking them.</p>
+</blockquote>
+<p>In other words, <strong>old clients can keep using the new service without errors.</strong></p>
+<h3 id="why-is-it-important-in-microservices">Why is it important in Microservices?</h3>
+<ul>
+<li>Multiple services and apps may call your API.</li>
+<li>You can’t force everyone to upgrade at once.</li>
+<li>You want to <strong>release new features or fix bugs</strong> without stopping old clients.</li>
+<li>Ensures <strong>smooth evolution</strong> of services over time.</li>
+</ul>
+<h3 id="how-to-maintain-backward-compatibility">How to maintain Backward Compatibility?</h3>
+<ul>
+<li><strong>Add new fields but don’t remove existing ones.</strong></li>
+<li><strong>Make changes additive, not breaking.</strong></li>
+<li><strong>Avoid changing existing data types or request formats.</strong></li>
+<li><strong>Support old API endpoints or versions (versioning).</strong></li>
+<li>Use <strong>default values</strong> for new fields.</li>
+</ul>
+<h3 id="example">Example:</h3>
+<p>If your API response used to return:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>You can add a new field like:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john@example.com&quot;</span><span class="w">  </span><span class="c1">// new field added</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Old clients ignoring <code>email</code> still work fine.</p>
+<h3 id="summary">Summary</h3>
+<p>Backward Compatibility helps you <strong>improve your microservices without breaking existing users</strong> — a key part of good API design!</p>
+<h2 id="setting-up-development-environment">⚙️ Setting up Development Environment</h2>
+<h3 id="1-tools-ides">1. Tools &amp; IDEs</h3>
+<ul>
+<li><strong>Visual Studio / Visual Studio Code</strong> — Popular IDEs for microservice development.</li>
+<li><strong>Postman / Insomnia</strong> — API testing tools.</li>
+<li><strong>Database Clients</strong> — e.g., SQL Server Management Studio</li>
+<li><strong>Logging &amp; Monitoring Tools</strong> — e.g., ELK stack, Grafana.</li>
+</ul>
+<h3 id="2-docker-and-containers">2. Docker and Containers</h3>
+<ul>
+<li>Install <strong>Docker Desktop</strong> to build and run containers locally.</li>
+<li>Use <strong>Docker Compose</strong> to orchestrate multiple microservices and dependencies.</li>
+<li>Containers package your microservices with all dependencies ensuring consistency across environments.</li>
+</ul>
+<h3 id="3-git-repositories">3. Git Repositories</h3>
+<ul>
+<li>Use <strong>Git</strong> for version control.</li>
+<li>Host repositories on <strong>GitHub</strong> or other Git platforms.</li>
+</ul>
+<h3 id="4-branching-strategy">4. Branching Strategy</h3>
+<ul>
+<li>Use a branching model to organize work and releases.</li>
+<li>
+<p>Common strategies:</p>
+</li>
+<li>
+<p><strong>Git Flow</strong>: Feature branches, develop branch, release branches, main/master branch.</p>
+</li>
+<li><strong>GitHub Flow</strong>: Main branch + short-lived feature branches.</li>
+<li><strong>Trunk Based Development</strong>: Frequent small merges to main.</li>
+<li>Branch naming examples: <code>feature/user-auth</code>, <code>bugfix/login-error</code>, <code>release/v1.0</code>.</li>
+</ul>
+<h3 id="tips">Tips</h3>
+<ul>
+<li>Always <strong>pull latest changes</strong> before starting work.</li>
+<li>Create <strong>pull requests / merge requests</strong> for code reviews.</li>
+<li>Use <strong>.gitignore</strong> files to avoid committing sensitive or unnecessary files.</li>
+</ul>
+<h2 id="different-types-of-branching-strategies">🌿 Different Types of Branching Strategies</h2>
+<h3 id="1-git-flow">1. <strong>Git Flow</strong></h3>
+<ul>
+<li>Uses multiple branches: <code>master</code> (production), <code>develop</code> (integration), feature branches, release branches, and hotfix branches.</li>
+<li>Good for complex projects with planned releases and multiple environments.</li>
+</ul>
+<h3 id="2-github-flow">2. <strong>GitHub Flow</strong></h3>
+<ul>
+<li>Simple model with a single <code>main</code> branch.</li>
+<li>Developers create short-lived feature branches off <code>main</code>.</li>
+<li>After code review, branches are merged back into <code>main</code>.</li>
+<li>Ideal for continuous deployment and simpler workflows.</li>
+</ul>
+<h3 id="3-trunk-based-development">3. <strong>Trunk-Based Development</strong></h3>
+<ul>
+<li>All developers work on a single <code>trunk</code> (often <code>main</code> or <code>master</code>).</li>
+<li>Small, frequent commits with feature toggles to manage incomplete features.</li>
+<li>Supports continuous integration and fast delivery.</li>
+</ul>
+<h3 id="4-feature-branching">4. <strong>Feature Branching</strong></h3>
+<ul>
+<li>Developers create branches for each feature or bugfix.</li>
+<li>Branches live until feature is complete, then merged back.</li>
+<li>Helps isolate development and reduce conflicts.</li>
+</ul>
+<h3 id="5-release-branching">5. <strong>Release Branching</strong></h3>
+<ul>
+<li>Create branches specifically for preparing releases.</li>
+<li>Stabilize and test release branch before merging to production branch.</li>
+<li>Allows bug fixes without disrupting ongoing development.</li>
+</ul>
+<h3 id="6-forking-workflow">6. <strong>Forking Workflow</strong></h3>
+<ul>
+<li>Developers fork the main repository to their own copy.</li>
+<li>Make changes in the fork, then create pull requests to original repo.</li>
+<li>Common in open-source projects.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../1.4-Communication-Patterns/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Communication Patterns">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Communication Patterns
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../part2/2.1-Building-Microservice/" class="md-footer__link md-footer__link--next" aria-label="Next: Building Microservice">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Building Microservice
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
