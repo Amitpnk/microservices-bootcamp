@@ -1,0 +1,32 @@
+﻿@page "/categories"
+@inject HttpClient Http
+
+<h1>Categories</h1>
+
+@if (categories == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach (var category in categories)
+        {
+            <li>@category.Name (@category.CategoryId)</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<CategoryDto>? categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await Http.GetFromJsonAsync<List<CategoryDto>>("eventcatalog/api/Category/");
+    }
+
+    public record CategoryDto { 
+        public Guid CategoryId { get; set; }
+        public string Name { get; set; }
+    }
+}
